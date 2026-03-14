@@ -1,0 +1,44 @@
+---@meta
+
+---@class _.lspconfig.settings.nushell.NushellLanguageServer.Hints
+---Display types inferred by nushell.
+---
+---```lua
+---default = true
+---```
+---@field showInferredTypes? boolean
+
+---@class _.lspconfig.settings.nushell.NushellLanguageServer.Trace
+---Traces the communication between VS Code and the language server.
+---
+---```lua
+---default = "messages"
+---```
+---@field server? "off" | "messages" | "verbose"
+
+---@class _.lspconfig.settings.nushell.NushellLanguageServer
+---@field hints? _.lspconfig.settings.nushell.NushellLanguageServer.Hints
+---The directories to include in the nushell environment.
+---@field includeDirs? string[]
+---Controls the maximum number of problems produced by the server.
+---
+---```lua
+---default = 100
+---```
+---@field maxNumberOfProblems? number
+---The maximum time in milliseconds to wait for nushell to respond.
+---
+---```lua
+---default = 10000000
+---```
+---@field maxNushellInvocationTime? number
+---The path to the nushell executable.
+---
+---```lua
+---default = "nu"
+---```
+---@field nushellExecutablePath? string
+---@field trace? _.lspconfig.settings.nushell.NushellLanguageServer.Trace
+
+---@class lspconfig.settings.nushell
+---@field nushellLanguageServer? _.lspconfig.settings.nushell.NushellLanguageServer

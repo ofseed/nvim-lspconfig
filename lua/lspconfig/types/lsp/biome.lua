@@ -1,0 +1,53 @@
+---@meta
+
+---@class _.lspconfig.settings.biome.Biome.Lsp.Trace
+---Sets the tracing level for communication between the extension and the Biome Language Server.
+---
+---```lua
+---default = "off"
+---```
+---@field server? "off" | "messages" | "verbose"
+
+---@class _.lspconfig.settings.biome.Biome.Lsp
+---@field bin? any
+---@field trace? _.lspconfig.settings.biome.Biome.Lsp.Trace
+
+---@class _.lspconfig.settings.biome.Biome
+---Specifies the path to a custom Biome configuration file within the workspace folder.
+---
+---If set to `null`, the extension will fall back to the default Biome configuration files.
+---@field configurationPath? string
+---Controls whether the Biome extension is active and provides its features in the context to which this setting applies.
+---
+---```lua
+---default = true
+---```
+---@field enabled? boolean
+---@field lsp? _.lspconfig.settings.biome.Biome.Lsp
+---(Deprecated) Path to a custom Biome binary.
+---
+---When set, the extension will use this path and will not attempt to locate Biome automatically.
+---
+---```lua
+---default = ""
+---```
+---@field lspBin? string
+---Require a Biome configuration file to enable Biome features in the context to which this setting applies.
+---
+---If set to `true`, the extension will not provide Biome features unless a configuration file is present in the workspace folder.
+---@field requireConfiguration? boolean
+---Whether to copy the Biome binary and run it from a temporary location.
+---
+---Defaults to `true` on Windows and `false` on other platforms.
+---@field runFromTemporaryLocation? boolean
+---When a global installation of Biome is required but not found in the `PATH`, the extension will suggest installing it.
+---
+---This setting controls whether that suggestion popup is shown.
+---
+---```lua
+---default = true
+---```
+---@field suggestInstallingGlobally? boolean
+
+---@class lspconfig.settings.biome
+---@field biome? _.lspconfig.settings.biome.Biome

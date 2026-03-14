@@ -1,0 +1,373 @@
+---@meta
+
+---@class _.lspconfig.settings.lemminx.Redhat.Telemetry
+---Enable usage data and errors to be sent to Red Hat servers. Read our [privacy statement](https://developers.redhat.com/article/tool-data-collection).
+---@field enabled? boolean
+
+---@class _.lspconfig.settings.lemminx.Redhat
+---@field telemetry? _.lspconfig.settings.lemminx.Redhat.Telemetry
+
+---@class _.lspconfig.settings.lemminx.Xml.CodeLens
+---Enable/disable XML CodeLens. Default is `false`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22CodeLens%22%2C%22section%22%3A%22Code%20Lens%22%7D%5D) for information about CodeLens features
+---@field enabled? boolean
+
+---@class _.lspconfig.settings.lemminx.Xml.Completion
+---Enable/disable the content of an element being removed when the element start tag is turned into a self-closing tag. The default setting is to remove the content. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Preferences%22%2C%22section%22%3A%22auto-close-removes-content%22%7D%5D) for more information.
+---
+---```lua
+---default = true
+---```
+---@field autoCloseRemovesContent? boolean
+---Enable/disable autoclosing of XML tags. Default is `true`. 
+---
+---IMPORTANT: Turn off `#editor.autoClosingTags#` for this to work.
+---
+---```lua
+---default = true
+---```
+---@field autoCloseTags? boolean
+
+---@class _.lspconfig.settings.lemminx.Xml.DownloadExternalResources
+---Download external resources like referenced DTD, XSD. Default is `true`.
+---
+---```lua
+---default = true
+---```
+---@field enabled? boolean
+
+---@class _.lspconfig.settings.lemminx.Xml.Extension
+---An array of paths to JARs that should be contributed to the LemMinX classpath. The paths can include glob patterns. This is intended to be used as a tool for developing extensions to vscode-xml. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Preferences%22%2C%22section%22%3A%22extension-jars%22%7D%5D) for more information
+---
+---```lua
+---default = {}
+---```
+---@field jars? any[]
+
+---@class _.lspconfig.settings.lemminx.Xml.FilePathSupport
+---Allows file path for the given file name patterns. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Features/XMLFilePathSupport%22%2C%22section%22%3A%22xmlfilepathsfeatures%22%7D%5D) for more information.
+---
+---```lua
+---default = {}
+---```
+---@field mappings? table[]
+
+---@class _.lspconfig.settings.lemminx.Xml.Foldings
+---Minimize the closing tag after folding. Default is `false`.
+---@field includeClosingTagInFold? boolean
+
+---@class _.lspconfig.settings.lemminx.Xml.Format
+---The option to put a closing bracket on a newline when `#xml.format.splitAttributes#` is `true`. Default value is `false`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Formatting%22%2C%22section%22%3A%22xmlformatclosingbracketnewline%22%7D%5D) for more information.
+---@field closingBracketNewLine? boolean
+---Expand/collapse empty elements. Default is `ignore`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Formatting%22%2C%22section%22%3A%22xmlformatemptyelements%22%7D%5D) for more information.
+---
+---```lua
+---default = "ignore"
+---```
+---@field emptyElements? "ignore" | "collapse" | "expand"
+---Enable/disable ability to format document. Default is `true`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Formatting%22%2C%22section%22%3A%22xmlformatenabled%22%7D%5D) for more information.
+---
+---```lua
+---default = true
+---```
+---@field enabled? boolean
+---Enforce `preferred` quote style (set by `#xml.preferences.quoteStyle#`) or `ignore` quote style when formatting. Default is `ignore`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Formatting%22%2C%22section%22%3A%22xmlformatenforcequotestyle%22%7D%5D) for more information.
+---
+---```lua
+---default = "ignore"
+---```
+---@field enforceQuoteStyle? "preferred" | "ignore"
+---Use Schema/DTD grammar information while formatting. Default is `true`. Not supported by legacy formatter. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Formatting%22%2C%22section%22%3A%22xmlformatgrammarawareformatting%22%7D%5D) for more information.
+---
+---```lua
+---default = true
+---```
+---@field grammarAwareFormatting? boolean
+---Set to `true` to join lines in CDATA content during formatting. Default is `false`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Formatting%22%2C%22section%22%3A%22xmlformatjoincdatalines%22%7D%5D) for more information.
+---@field joinCDATALines? boolean
+---Join comment content on format. Default is `false`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Formatting%22%2C%22section%22%3A%22xmlformatjoincommentlines%22%7D%5D) for more information.
+---@field joinCommentLines? boolean
+---Normalize the whitespace of content inside an element. Newlines and excess whitespace are removed. Default is `false`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Formatting%22%2C%22section%22%3A%22xmlformatjoincontentlines%22%7D%5D) for more information.
+---@field joinContentLines? boolean
+---Enable/disable legacy formatter. Default is `false`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Formatting%22%2C%22section%22%3A%22xmlformatlegacy%22%7D%5D) for more information.
+---@field legacy? boolean
+---Max line width. Set to `0` to disable this setting. Default is `100`. Not supported by legacy formatter. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Formatting%22%2C%22section%22%3A%22xmlformatmaxlinewidth%22%7D%5D) for more information.
+---
+---```lua
+---default = 100
+---```
+---@field maxLineWidth? integer
+---Preserve line breaks that appear before and after attributes. This setting is overridden if `#xml.format.splitAttributes#` is set to `splitNewLine` or `alignWithFirstAttr`. Default is `true`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Formatting%22%2C%22section%22%3A%22xmlformatpreserveattributelinebreaks%22%7D%5D) for more information.
+---
+---```lua
+---default = true
+---```
+---@field preserveAttributeLineBreaks? boolean
+---Preserve empty content/whitespace in a tag. Default is `false`. Supported only with legacy formatter. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Formatting%22%2C%22section%22%3A%22xmlformatpreserveemptycontent%22%7D%5D) for more information.
+---@field preserveEmptyContent? boolean
+---Element names for which spaces will be preserved. Not supported by legacy formatter. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Formatting%22%2C%22section%22%3A%22xmlformatpreservespace%22%7D%5D) for more information.
+---
+---```lua
+---default = { "xsl:text", "xsl:comment", "xsl:processing-instruction", "literallayout", "programlisting", "screen", "synopsis", "pre", "xd:pre", "style", "script" }
+---```
+---@field preserveSpace? string[]
+---Preserve new lines that separate tags. The value represents the maximum number of new lines per section. A value of 0 removes all new lines. Default is `2`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Formatting%22%2C%22section%22%3A%22xmlformatpreservednewlines%22%7D%5D) for more information.
+---
+---```lua
+---default = 2
+---```
+---@field preservedNewlines? 0 | 1 | 2 | 3
+---Insert space before end of self closing tag. 
+---Example:
+---  ```<tag/> -> <tag />```. Default is `true`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Formatting%22%2C%22section%22%3A%22xmlformatspacebeforeemptyclosetag%22%7D%5D) for more information.
+---
+---```lua
+---default = true
+---```
+---@field spaceBeforeEmptyCloseTag? boolean
+---Split multiple attributes each onto a new line or align attributes to the first. Default is `preserve`. Indicate level of indentation with `#xml.format.splitAttributesIndentSize#`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Formatting%22%2C%22section%22%3A%22xmlformatsplitattributes%22%7D%5D) for more information.
+---
+---```lua
+---default = "preserve"
+---```
+---@field splitAttributes? "preserve" | "splitNewLine" | "alignWithFirstAttr"
+---How many levels to indent the attributes by when `#xml.format.splitAttributes#` is `true`. Default value is `2`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Formatting%22%2C%22section%22%3A%22xmlformatsplitattributesindentsize%22%7D%5D) for more information
+---
+---```lua
+---default = 2
+---```
+---@field splitAttributesIndentSize? number
+---Split `xsi:schemaLocation` content. Default is `onPair`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Formatting%22%2C%22section%22%3A%22xmlformatxsischemalocationsplit%22%7D%5D) for more information
+---
+---```lua
+---default = "onPair"
+---```
+---@field xsiSchemaLocationSplit? "onElement" | "onPair" | "none"
+
+---@class _.lspconfig.settings.lemminx.Xml.Java
+---Specifies the folder path to the JDK (11 or more recent) used to launch the XML Language Server if the Java server is being run.
+---On Windows, backslashes must be escaped, i.e.
+---`"xml.java.home": "C:\\Program Files\\Java\\jdk11"`. For more information, please refer to [this document](command:xml.open.docs?%5B%7B%22page%22%3A%22Preferences%22%2C%22section%22%3A%22java-home%22%7D%5D).
+---@field home? string
+
+---@class _.lspconfig.settings.lemminx.Xml.Logs
+---Enable/disable logging to the Output view. Default is `true`.
+---
+---```lua
+---default = true
+---```
+---@field client? boolean
+
+---@class _.lspconfig.settings.lemminx.Xml.Preferences
+---Preferred quote style to use for completion: `single` quotes, `double` quotes. Default is `double`.
+---
+---```lua
+---default = "double"
+---```
+---@field quoteStyle? "single" | "double"
+---Specifies the source of the XML schema documentation displayed on hover and completion. Default is `all`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Preferences%22%2C%22section%22%3A%22documentation-type%22%7D%5D) for more information.
+---
+---```lua
+---default = "all"
+---```
+---@field showSchemaDocumentationType? "documentation" | "appinfo" | "all" | "none"
+
+---@class _.lspconfig.settings.lemminx.Xml.Server.Binary
+---Command line arguments to supply to the binary server when the binary server is being used. Takes into effect after relaunching VSCode. Please refer to [this website for the available options](https://www.graalvm.org/reference-manual/native-image/HostedvsRuntimeOptions/). For example, you can increase the maximum memory that the server can use to 1 GB by adding `-Xmx1g`
+---@field args? string
+---Specify the path of a custom binary version of the XML server to use. A binary will be downloaded if this is not set.
+---@field path? string
+---List of the SHA256 hashes of trusted copies of the lemminx (XML language server) binary. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Preferences%22%2C%22section%22%3A%22trusted-binary-hashes%22%7D%5D) for more information
+---
+---```lua
+---default = {}
+---```
+---@field trustedHashes? string[]
+
+---@class _.lspconfig.settings.lemminx.Xml.Server
+---@field binary? _.lspconfig.settings.lemminx.Xml.Server.Binary
+---By default, vscode-xml tries to run the Java version of the XML Language Server. If no Java is detected, vscode-xml runs the binary XML language server. When this setting is enabled, the binary will also be used even if Java is installed. If there are additions to the XML Language Server provided by other extensions, Java will be used (if available) even if this setting is enabled.
+---@field preferBinary? boolean
+---The XML Language server allows other VSCode extensions to extend its functionality. It requires Java-specific features in order to do this. If extensions to the XML language server are detected, but a binary XML language server is run, a warning will appear. This setting can be used to disable this warning.
+---@field silenceExtensionWarning? boolean
+---Specifies extra VM arguments used to launch the XML Language Server. Eg. use `-Xmx1G  -XX:+UseG1GC -XX:+UseStringDeduplication` to increase the heap size to 1GB and enable String deduplication with the G1 Garbage collector. Please refer to [this document](command:xml.open.docs?%5B%7B%22page%22%3A%22Preferences%22%2C%22section%22%3A%22server-vm-arguments%22%7D%5D) for more information on the Java server arguments.
+---
+---```lua
+---default = "-Xmx64M"
+---```
+---@field vmargs? string
+---Set a custom folder path for cached XML Schemas. An absolute path is expected, although the `~` prefix (for the user home directory) is supported. Default is `~/.lemminx`. Please refer to the [cache documentation](command:xml.open.docs?%5B%7B%22page%22%3A%22Preferences%22%2C%22section%22%3A%22server-cache-path%22%7D%5D) for more information.
+---
+---```lua
+---default = "~/.lemminx"
+---```
+---@field workDir? string
+
+---@class _.lspconfig.settings.lemminx.Xml.Symbols
+---Enable/disable document symbols (Outline). Default is `true`. No symbols are given if `"xml.symbols.enabled": false`.
+---
+---```lua
+---default = true
+---```
+---@field enabled? boolean
+---Disable document symbols (Outline) for the given file name patterns. Updating file name patterns does not automatically reload the Outline view for the relevant file(s). Each file must either be reopened or changed, in order to trigger an Outline view reload.
+---
+---Example:
+---```
+---[
+--- "**/*LargeFile.xml"
+---]```.
+---
+---```lua
+---default = {}
+---```
+---@field excluded? string[]
+---Allows XML symbols filter to be associated to file name patterns. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Symbols%22%2C%22section%22%3A%22xmlsymbolsfilters%22%7D%5D) for more information.. 
+---
+---Example:
+---```json
+---[
+---  {
+---    "pattern": "pom.xml",
+---    "expressions": [
+---      {
+---        "xpath": "//text()"
+---      }
+---    ]
+---  }
+---]
+---```
+---
+---```lua
+---default = {}
+---```
+---@field filters? table[]
+---The maximum number of outline symbols and folding regions computed (limited for performance reasons). Default is `5000`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Symbols%22%2C%22section%22%3A%22xmlsymbolsmaxitemscomputed%22%7D%5D) for more information.
+---
+---```lua
+---default = 5000
+---```
+---@field maxItemsComputed? integer
+---Show referenced grammars in the Outline. Default is `true`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Symbols%22%2C%22section%22%3A%22xmlsymbolsshowreferencedgrammars%22%7D%5D) for more information.
+---
+---```lua
+---default = true
+---```
+---@field showReferencedGrammars? boolean
+
+---@class _.lspconfig.settings.lemminx.Xml.Trace
+---Traces the communication between VS Code and the XML language server in the Output view. Default is `off`.
+---
+---```lua
+---default = "off"
+---```
+---@field server? "off" | "messages" | "verbose"
+
+---@class _.lspconfig.settings.lemminx.Xml.Validation.Namespaces
+---Enable/disable namespaces validation. Default is `always`. Ignored if `#xml.validation.enabled#` is set to `false`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Validation%22%2C%22section%22%3A%22xmlnamespaceschemaenabled%22%7D%5D) for more information.
+---
+---```lua
+---default = "always"
+---```
+---@field enabled? "always" | "never" | "onNamespaceEncountered"
+
+---@class _.lspconfig.settings.lemminx.Xml.Validation.Schema
+---Enable/disable schema based validation. Default is `always`. Ignored if `#xml.validation.enabled#` is set to `false`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Validation%22%2C%22section%22%3A%22xmlvalidationschemaenabled%22%7D%5D) for more information.
+---
+---```lua
+---default = "always"
+---```
+---@field enabled? "always" | "never" | "onValidSchema"
+
+---@class _.lspconfig.settings.lemminx.Xml.Validation.XInclude
+---Enable/disable validation for `xi:include`. Default is `false`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Validation%22%2C%22section%22%3A%22xmlvalidationxincludeenabled%22%7D%5D) for more information.
+---@field enabled? boolean
+
+---@class _.lspconfig.settings.lemminx.Xml.Validation
+---Enable/disable if a fatal error is thrown if the incoming document contains a DOCTYPE declaration. Default is `false`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Validation%22%2C%22section%22%3A%22disallow-doc-type-declarations%22%7D%5D) for more information
+---@field disallowDocTypeDecl? boolean
+---Enable/disable all validation. Default is `true`.
+---
+---```lua
+---default = true
+---```
+---@field enabled? boolean
+---```lua
+---default = { {
+---    noGrammar = "ignore",
+---    pattern = "**.exsd",
+---    schema = {
+---      enabled = "never"
+---    }
+---  }, {
+---    noGrammar = "ignore",
+---    pattern = "**{.project,.classpath,plugin.xml,feature.xml,category.xml,.target,.product}"
+---  } }
+---```
+---@field filters? table[]
+---@field namespaces? _.lspconfig.settings.lemminx.Xml.Validation.Namespaces
+---The message severity when a document has no associated grammar. Default is `hint`.
+---
+---```lua
+---default = "hint"
+---```
+---@field noGrammar? "ignore" | "hint" | "info" | "warning" | "error"
+---Enable/disable resolve of external entities. Default is `false`. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Validation%22%2C%22section%22%3A%22resolve-external-entities%22%7D%5D) for more information. Disabled for untrusted workspaces
+---@field resolveExternalEntities? boolean
+---@field schema? _.lspconfig.settings.lemminx.Xml.Validation.Schema
+---@field xInclude? _.lspconfig.settings.lemminx.Xml.Validation.XInclude
+
+---@class _.lspconfig.settings.lemminx.Xml
+---Register XML catalog files. See how to configure [XML catalog with XSD](command:xml.open.docs?%5B%7B%22page%22%3A%22Validation%22%2C%22section%22%3A%22xml-catalog-with-xsd%22%7D%5D) or [XML catalog with DTD](command:xml.open.docs?%5B%7B%22page%22%3A%22Validation%22%2C%22section%22%3A%22xml-catalog-with-dtd%22%7D%5D) for more information.
+---
+---```lua
+---default = {}
+---```
+---@field catalogs? string[]
+---@field codeLens? _.lspconfig.settings.lemminx.Xml.CodeLens
+---Allows colors for the given file name patterns. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Features/XMLColorsFeatures%22%2C%22section%22%3A%22xmlcolorsfeatures%22%7D%5D) for more information.
+---
+---```lua
+---default = {}
+---```
+---@field colors? table[]
+---@field completion? _.lspconfig.settings.lemminx.Xml.Completion
+---@field downloadExternalResources? _.lspconfig.settings.lemminx.Xml.DownloadExternalResources
+---@field extension? _.lspconfig.settings.lemminx.Xml.Extension
+---Allows XML schemas/ DTD to be associated to file name patterns. Please refer to [XML file association with XSD](command:xml.open.docs?%5B%7B%22page%22%3A%22Validation%22%2C%22section%22%3A%22xml-file-association-with-xsd%22%7D%5D) or [XML file association with DTD](command:xml.open.docs?%5B%7B%22page%22%3A%22Validation%22%2C%22section%22%3A%22xml-file-association-with-dtd%22%7D%5D) for more information. 
+---
+---Example:
+---```json
+---[{
+---  "pattern": "file1.xml",
+---  "systemId": "path/to/file.xsd"
+---},
+---{
+---  "pattern": "**/*.xsd",
+---  "systemId": "http://www.w3.org/2001/XMLSchema.xsd"
+---}]
+---```
+---
+---```lua
+---default = {}
+---```
+---@field fileAssociations? table[]
+---@field filePathSupport? _.lspconfig.settings.lemminx.Xml.FilePathSupport
+---@field foldings? _.lspconfig.settings.lemminx.Xml.Foldings
+---@field format? _.lspconfig.settings.lemminx.Xml.Format
+---@field java? _.lspconfig.settings.lemminx.Xml.Java
+---@field logs? _.lspconfig.settings.lemminx.Xml.Logs
+---@field preferences? _.lspconfig.settings.lemminx.Xml.Preferences
+---Allows references for the given file name patterns. See [here](command:xml.open.docs?%5B%7B%22page%22%3A%22Features/XMLReferencesFeatures%22%2C%22section%22%3A%22xmlreferencesfeatures%22%7D%5D) for more information.
+---
+---```lua
+---default = {}
+---```
+---@field references? table[]
+---@field server? _.lspconfig.settings.lemminx.Xml.Server
+---@field symbols? _.lspconfig.settings.lemminx.Xml.Symbols
+---@field trace? _.lspconfig.settings.lemminx.Xml.Trace
+---@field validation? _.lspconfig.settings.lemminx.Xml.Validation
+
+---@class lspconfig.settings.lemminx
+---@field redhat? _.lspconfig.settings.lemminx.Redhat
+---@field xml? _.lspconfig.settings.lemminx.Xml

@@ -1,0 +1,32 @@
+---@meta
+
+---@class _.lspconfig.settings.nixd.Nix
+---Use LSP instead of nix-instantiate and the formatter configured via `nix.formatterPath`.
+---@field enableLanguageServer? boolean
+---Full path to the nix formatter executable. This setting won't take effect if `nix.enableLanguageServer` is enabled; if that's the case, you can instead set formatter via `nix.serverSettings` (see [README](https://github.com/nix-community/vscode-nix-ide#lsp-plugin-support) for examples)
+---
+---```lua
+---default = "nixfmt"
+---```
+---@field formatterPath? any
+---Error notifications from the language server for these request types will be suppressed.
+---
+---```lua
+---default = {}
+---```
+---@field hiddenLanguageServerErrors? string[]
+---Location of the nix language server command.
+---
+---```lua
+---default = "nil"
+---```
+---@field serverPath? any
+---Settings passed to the language server on configuration requests.
+---
+---```lua
+---default = {}
+---```
+---@field serverSettings? table
+
+---@class lspconfig.settings.nixd
+---@field nix? _.lspconfig.settings.nixd.Nix

@@ -1,0 +1,169 @@
+---@meta
+
+---@class _.lspconfig.settings.wgsl_analyzer.WgslAnalyzer.CachePriming
+---Number of worker threads used to warm caches when a project opens.
+---Use `0` to let the server choose automatically based on the machine.
+---
+---```lua
+---default = "physical"
+---```
+---@field numThreads? number|"physical" | "logical"
+
+---@class _.lspconfig.settings.wgsl_analyzer.WgslAnalyzer.Diagnostics
+---Controls whether to show naga's parsing errors.
+---
+---```lua
+---default = true
+---```
+---@field nagaParsingErrors? boolean
+---Controls whether to show naga's validation errors.
+---
+---```lua
+---default = true
+---```
+---@field nagaValidationErrors? boolean
+---Naga version used for validation.
+---
+---```lua
+---default = "0.28"
+---```
+---@field nagaVersion? "0.27" | "0.28" | "main"
+---Controls whether to show type errors.
+---
+---```lua
+---default = true
+---```
+---@field typeErrors? boolean
+
+---@class _.lspconfig.settings.wgsl_analyzer.WgslAnalyzer.InlayHints
+---Whether to show inlay hints.
+---
+---```lua
+---default = true
+---```
+---@field enabled? boolean
+---Whether to show inlay hints for the names of function parameters.
+---
+---```lua
+---default = true
+---```
+---@field parameterHints? boolean
+---Whether to render leading colons for type hints, and trailing colons for parameter hints.
+---
+---```lua
+---default = true
+---```
+---@field renderColons? boolean
+---Whether to show inlay hints for the layout of struct fields.
+---@field structLayoutHints? boolean
+---Whether to show inlay hints for types of variable declarations.
+---
+---```lua
+---default = true
+---```
+---@field typeHints? boolean
+---Verbosity of type hints: `"full"`, `"compact"`, or `"inner"`.
+---
+---```lua
+---default = "compact"
+---```
+---@field typeVerbosity? "full" | "compact" | "inner"
+
+---@class _.lspconfig.settings.wgsl_analyzer.WgslAnalyzer.Server
+---Extra environment variables that will be passed to the wgsl-analyzer executable. Useful for passing variables (for example, `WA_LOG`) for debugging.
+---@field extraEnv? table
+---Path to wgsl-analyzer executable (points to bundled binary by default).
+---@field path? string
+
+---@class _.lspconfig.settings.wgsl_analyzer.WgslAnalyzer.StatusBar
+---Action to run when clicking the extension status bar item.
+---
+---```lua
+---default = "openLogs"
+---```
+---@field clickAction? "stopServer" | "openLogs"
+---When to show the extension status bar.
+---
+---`"always"` Always show the status bar.
+---
+---`"never"` Never show the status bar.
+---
+---`{ documentSelector: <DocumentSelector>[] }` Show the status bar if the open file matches any of the given document selectors.
+---
+---See [VS Code -- DocumentSelector](https://code.visualstudio.com/api/references/document-selector) for more information.
+---
+---```lua
+---default = {
+---  documentSelector = { {
+---      language = "wgsl"
+---    }, {
+---      language = "wesl"
+---    }, {
+---      pattern = "**/wesl.toml"
+---    }, {
+---      pattern = "extension-output-wgsl-analyzer.wgsl-analyzer*",
+---      scheme = "output"
+---    } }
+---}
+---```
+---@field showStatusBar? "always" | "never"|table
+
+---@class _.lspconfig.settings.wgsl_analyzer.WgslAnalyzer.Trace
+---Enable logging of VS Code extensions itself.
+---This settings is now deprecated.
+---Log level is now controlled by the [Developer: Set Log Level...](command:workbench.action.setLogLevel) command. You can set the log level for the current session and also the default log level from there. This is also available by clicking the gear icon on the OUTPUT tab when wgsl-analyzer Client is visible or by passing the --log wgsl-analyzer.wgsl-analyzer:debug parameter to VS Code.
+---@field extension? boolean
+---Server trace verbosity.
+---One of: `"off"`, `"messages"`, or `"verbose"`.
+---
+---```lua
+---default = "off"
+---```
+---@field server? "off" | "messages" | "verbose"
+
+---@class _.lspconfig.settings.wgsl_analyzer.WgslAnalyzer.Typing
+---Whether to prefix newlines after comments with the corresponding comment prefix.
+---
+---```lua
+---default = true
+---```
+---@field continueCommentsOnNewline? boolean
+
+---@class _.lspconfig.settings.wgsl_analyzer.WgslAnalyzer
+---@field cachePriming? _.lspconfig.settings.wgsl_analyzer.WgslAnalyzer.CachePriming
+---@field diagnostics? _.lspconfig.settings.wgsl_analyzer.WgslAnalyzer.Diagnostics
+---Do not start wgsl-analyzer server when the extension is activated.
+---@field initializeStopped? boolean
+---@field inlayHints? _.lspconfig.settings.wgsl_analyzer.WgslAnalyzer.InlayHints
+---Number of worker threads for the main analysis loop.
+---`null` lets the server choose automatically.
+---@field numThreads? any|"physical" | "logical"
+---Whether to restart the server automatically when certain settings that require a restart are changed.
+---@field restartServerOnConfigChange? boolean
+---@field server? _.lspconfig.settings.wgsl_analyzer.WgslAnalyzer.Server
+---Whether to show the dependencies view.
+---
+---```lua
+---default = true
+---```
+---@field showDependenciesExplorer? boolean
+---Whether to show error notifications for failing requests.
+---
+---```lua
+---default = true
+---```
+---@field showRequestFailedErrorNotification? boolean
+---Whether to show the syntax tree view.
+---@field showSyntaxTree? boolean
+---Whether to show a notification for unlinked files asking the user to add the corresponding `wesl.toml` to the linked projects setting.
+---
+---```lua
+---default = true
+---```
+---@field showUnlinkedFileNotification? boolean
+---@field statusBar? _.lspconfig.settings.wgsl_analyzer.WgslAnalyzer.StatusBar
+---@field trace? _.lspconfig.settings.wgsl_analyzer.WgslAnalyzer.Trace
+---@field typing? _.lspconfig.settings.wgsl_analyzer.WgslAnalyzer.Typing
+
+---@class lspconfig.settings.wgsl_analyzer
+---@field ["wgsl-analyzer"]? _.lspconfig.settings.wgsl_analyzer.WgslAnalyzer

@@ -1,0 +1,150 @@
+---@meta
+
+---@class _.lspconfig.settings.taplo.EvenBetterToml.Completion
+---The maximum amount of keys in a dotted key to display during completion, 0 effectively disables key completions.
+---
+---```lua
+---default = 5
+---```
+---@field maxKeys? integer
+
+---@class _.lspconfig.settings.taplo.EvenBetterToml.Formatter
+---Align consecutive comments after entries and items vertically. This applies to comments that are after entries or array items
+---@field alignComments? boolean
+---Align entries vertically. Entries that have table headers, comments, or blank lines between them are not aligned.
+---@field alignEntries? boolean
+---The maximum amount of consecutive blank lines allowed.
+---@field allowedBlankLines? number
+---Automatically collapse arrays if they fit in one line.
+---@field arrayAutoCollapse? boolean
+---Automatically expand arrays to multiple lines.
+---@field arrayAutoExpand? boolean
+---Put trailing commas for multiline arrays.
+---@field arrayTrailingComma? boolean
+---Target maximum column width after which arrays are expanded into new lines.
+---@field columnWidth? number
+---Omit whitespace padding inside single-line arrays.
+---@field compactArrays? boolean
+---Omit whitespace around `=`.
+---@field compactEntries? boolean
+---Omit whitespace padding inside inline tables.
+---@field compactInlineTables? boolean
+---Use CRLF line endings.
+---@field crlf? boolean
+---Indent entries under tables.
+---@field indentEntries? boolean
+---Indentation to use, should be tabs or spaces but technically could be anything.
+---@field indentString? string
+---Indent subtables if they come in order.
+---@field indentTables? boolean
+---Expand values inside in line tables.
+---@field inlineTableExpand? boolean
+---Alphabetically reorder array values that are not separated by blank lines.
+---@field reorderArrays? boolean
+---Alphabetically reorder inline tables.
+---@field reorderInlineTables? boolean
+---Alphabetically reorder keys that are not separated by blank lines.
+---@field reorderKeys? boolean
+---Add trailing newline to the source.
+---@field trailingNewline? boolean
+
+---@class _.lspconfig.settings.taplo.EvenBetterToml.Schema.Cache
+---The amount of seconds after which cached catalogs and schemas expire and will be attempted to be fetched again.
+---
+---```lua
+---default = 600
+---```
+---@field diskExpiration? integer
+---The amount of seconds after which schemas will be invalidated from memory. 
+---**NOTE**: setting too low values will cause performance issues and validation of some schemas will fail.
+---
+---```lua
+---default = 60
+---```
+---@field memoryExpiration? integer
+
+---@class _.lspconfig.settings.taplo.EvenBetterToml.Schema
+---Additional document and schema associations. 
+---
+--- The key must be a regular expression, this pattern is used to associate schemas with absolute document URIs. Overlapping patterns result in undefined behaviour and either matching schema can be used. 
+---
+--- The value must be an absolute URI to the JSON schema, for supported values and more information [read here](https://taplo.tamasfe.dev/configuration#visual-studio-code).
+---
+---```lua
+---default = {}
+---```
+---@field associations? table
+---@field cache? _.lspconfig.settings.taplo.EvenBetterToml.Schema.Cache
+---A list of URLs to schema catalogs where schemas and associations can be fetched from
+---
+---```lua
+---default = { "https://json.schemastore.org/api/json/catalog.json" }
+---```
+---@field catalogs? string[]
+---Enable completion and validation based on JSON schemas.
+---
+---```lua
+---default = true
+---```
+---@field enabled? boolean
+---Whether to show clickable links for keys in the editor.
+---@field links? boolean
+
+---@class _.lspconfig.settings.taplo.EvenBetterToml.Syntax
+---Whether to enable semantic tokens for tables and arrays.
+---
+---```lua
+---default = true
+---```
+---@field semanticTokens? boolean
+
+---@class _.lspconfig.settings.taplo.EvenBetterToml.Taplo.ConfigFile
+---Whether to enable the usage of a Taplo configuration file.
+---
+---```lua
+---default = true
+---```
+---@field enabled? boolean
+---An absolute, or workspace relative path to the Taplo configuration file.
+---@field path? string
+
+---@class _.lspconfig.settings.taplo.EvenBetterToml.Taplo
+---Use the bundled taplo language server. If set to `false`, the `taplo` executable must be found in PATH or must be set in `evenBetterToml.taplo.path`.
+---
+---```lua
+---default = true
+---```
+---@field bundled? boolean
+---@field configFile? _.lspconfig.settings.taplo.EvenBetterToml.Taplo.ConfigFile
+---Environment variables for Taplo.
+---
+---```lua
+---default = {}
+---```
+---@field environment? table
+---Additional arguments for Taplo. Has no effect for the bundled LSP.
+---
+---```lua
+---default = {}
+---```
+---@field extraArgs? string[]
+---An absolute path to the `taplo` executable. `evenBetterToml.taplo.bundled` needs to be set to `false` for this to have any effect.
+---@field path? string
+
+---@class _.lspconfig.settings.taplo.EvenBetterToml
+---@field completion? _.lspconfig.settings.taplo.EvenBetterToml.Completion
+---@field formatter? _.lspconfig.settings.taplo.EvenBetterToml.Formatter
+---Array of Taplo rules in JSON format, see [Configuration File - Rules](https://taplo.tamasfe.dev/configuration/file.html#rules). The rules given here are appended to existing rules from config files, if any. There is no conversion done, all object keys must be snake_case, including formatting rules.
+---
+---```lua
+---default = {}
+---```
+---@field rules? any[]
+---@field schema? _.lspconfig.settings.taplo.EvenBetterToml.Schema
+---Enable semantic tokens for inline table and array keys.
+---@field semanticTokens? boolean
+---@field syntax? _.lspconfig.settings.taplo.EvenBetterToml.Syntax
+---@field taplo? _.lspconfig.settings.taplo.EvenBetterToml.Taplo
+
+---@class lspconfig.settings.taplo
+---@field evenBetterToml? _.lspconfig.settings.taplo.EvenBetterToml

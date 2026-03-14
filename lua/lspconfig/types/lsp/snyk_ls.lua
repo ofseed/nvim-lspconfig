@@ -1,0 +1,232 @@
+---@meta
+
+---@class _.lspconfig.settings.snyk_ls.Snyk.Advanced
+---Parameters to pass to Snyk CLI for Open Source security tests.
+---@field additionalParameters? string
+---Specifies whether to authenticate with OAuth2, PAT, or with an API token (Legacy). 
+---
+---Note: OAuth2 authentication is recommended as it provides enhanced security.
+---
+---```lua
+---default = "OAuth2 (Recommended)"
+---```
+---@field authenticationMethod? "OAuth2 (Recommended)" | "Personal Access Token" | "API Token (Legacy)"
+---Run Snyk Open Source Security analysis in automatic mode.
+---@field autoScanOpenSourceSecurity? boolean
+---Use automatic organization selection. When enabled, Snyk will automatically select the most appropriate organization for your project using context found in your repository and your authentication. If an organization is configured manually, this feature will be overridden. If an appropriate organization cannot be identified automatically, the preferred organization defined in your [web account settings](https://app.snyk.io/account) will be used as a fallback.
+---
+---**Note:** This setting will be moved to the Snyk Settings page in a future release.
+---
+---```lua
+---default = true
+---```
+---@field autoSelectOrganization? boolean
+---Snyk will download, install and update dependencies for you. If this option is disabled, make sure valid paths to the dependencies are provided.
+---
+---```lua
+---default = true
+---```
+---@field automaticDependencyManagement? boolean
+---Base URL to download the CLI.
+---
+---```lua
+---default = "https://downloads.snyk.io"
+---```
+---@field cliBaseDownloadUrl? string
+---Sets path to Snyk CLI extension dependency.
+---@field cliPath? string
+---CLI release channel.
+---
+---```lua
+---default = "stable"
+---```
+---@field cliReleaseChannel? "stable" | "rc" | "preview"
+---If you're using SSO with Snyk and OAuth2, the custom endpoint configuration is automatically populated. 
+---
+---Otherwise, for public regional instances, see our [documentation](https://docs.snyk.io/working-with-snyk/regional-hosting-and-data-residency#available-snyk-regions). 
+---
+---For private instances, contact your team or account manager.
+---@field customEndpoint? string
+---Specify the organization (ID or name) for Snyk to run scans against. If the organization is provided manually, automatic organization selection is overridden. If the organization value is blank or invalid, the preferred organization defined in your [web account settings](https://app.snyk.io/account) will be used.
+---
+---**Note:** This setting will be moved to the Snyk Settings page in a future release.
+---@field organization? string
+---Snyk uses VS Code's [secret storage](https://code.visualstudio.com/api/references/vscode-api#SecretStorage) to safely persist API token instead of saving it in plaintext in `settings.json`. To set the token manually, run the VS Code command [Snyk: Set Token](command:snyk.setToken).
+---
+---```lua
+---default = "Always use VS Code's secret storage"
+---```
+---@field tokenStorage? "Always use VS Code's secret storage"
+
+---Preview features that are currently in development. Setting keys will be removed when features become stable.
+---
+---```lua
+---default = {}
+---```
+---@class _.lspconfig.settings.snyk_ls.Snyk.Features.Preview
+---Use new HTML-based settings UI instead of VS Code's native settings
+---
+---```lua
+---default = true
+---```
+---@field htmlSettings? boolean
+---Use server-driven HTML tree view instead of native tree views
+---@field htmlTreeView? boolean
+
+---@class _.lspconfig.settings.snyk_ls.Snyk.Features
+---Find and fix security issues in your application code in real time.
+---
+---For these scans to run, Snyk Code must be enabled for your organization in Snyk settings.
+---
+---```lua
+---default = true
+---```
+---@field codeSecurity? boolean
+---Find and fix your IaC misconfigurations.
+---
+---```lua
+---default = true
+---```
+---@field infrastructureAsCode? boolean
+---Find and fix open source dependency issues.
+---
+---```lua
+---default = true
+---```
+---@field openSourceSecurity? boolean
+---Preview features that are currently in development. Setting keys will be removed when features become stable.
+---
+---```lua
+---default = {}
+---```
+---@field preview? _.lspconfig.settings.snyk_ls.Snyk.Features.Preview
+---[Closed Beta] Find and remediate hard-coded secrets in your codebase.
+---@field secrets? boolean
+
+---[Code Consistent Ignores](https://docs.snyk.io/manage-risk/prioritize-issues-for-fixing/ignore-issues/consistent-ignores-for-snyk-code) helps your teams focus on important tasks by filtering out distractions. It ensures that once an ignore is created, it is consistently respected regardless of how and where the test is run and what branch is being tested.
+---
+---Note: These filters will have no effect if Code Consistent Ignores is disabled for the organization.
+---
+---Show the following issues:
+---
+---```lua
+---default = {
+---  ignoredIssues = false,
+---  openIssues = true
+---}
+---```
+---@class _.lspconfig.settings.snyk_ls.Snyk.IssueViewOptions
+---Ignored Issues
+---@field ignoredIssues? boolean
+---Open Issues
+---
+---```lua
+---default = true
+---```
+---@field openIssues? boolean
+
+---@class _.lspconfig.settings.snyk_ls.Snyk.SecurityAtInception
+---Configure Snyk MCP server
+---@field autoConfigureSnykMcpServer? boolean
+---Choose when Snyk should scan and initiate fixes for your AI-generated code
+---
+---```lua
+---default = "Manual"
+---```
+---@field executionFrequency? "On Code Generation" | "Smart Scan" | "Manual"
+
+---Severity issues to display.
+---
+---```lua
+---default = {
+---  critical = true,
+---  high = true,
+---  low = true,
+---  medium = true
+---}
+---```
+---@class _.lspconfig.settings.snyk_ls.Snyk.Severity
+---```lua
+---default = true
+---```
+---@field critical? boolean
+---```lua
+---default = true
+---```
+---@field high? boolean
+---```lua
+---default = true
+---```
+---@field low? boolean
+---```lua
+---default = true
+---```
+---@field medium? boolean
+
+---@class _.lspconfig.settings.snyk_ls.Snyk
+---@field advanced? _.lspconfig.settings.snyk_ls.Snyk.Advanced
+---Specifies whether to see all issues or only net new issues. Net new issues option requires a Git repository, where it compares findings with those in the base branch.
+---
+---```lua
+---default = "All issues"
+---```
+---@field allIssuesVsNetNewIssues? "All issues" | "Net new issues"
+---@field features? _.lspconfig.settings.snyk_ls.Snyk.Features
+---[Code Consistent Ignores](https://docs.snyk.io/manage-risk/prioritize-issues-for-fixing/ignore-issues/consistent-ignores-for-snyk-code) helps your teams focus on important tasks by filtering out distractions. It ensures that once an ignore is created, it is consistently respected regardless of how and where the test is run and what branch is being tested.
+---
+---Note: These filters will have no effect if Code Consistent Ignores is disabled for the organization.
+---
+---Show the following issues:
+---
+---```lua
+---default = {
+---  ignoredIssues = false,
+---  openIssues = true
+---}
+---```
+---@field issueViewOptions? _.lspconfig.settings.snyk_ls.Snyk.IssueViewOptions
+---[Closed Beta] Filters Open Source issues by [risk score](https://docs.snyk.io/manage-risk/prioritize-issues-for-fixing/risk-score). Only issues with a risk score >= threshold are shown. Set to 0 to show all issues. This filter will apply in conjunction with other filters such as Severity and Issue View Options.
+---
+---```lua
+---default = 0
+---```
+---@field riskScoreThreshold? integer
+---Choose whether to run Snyk Code scans in the background, or only when you run the `Snyk: Rescan` command.
+---
+---```lua
+---default = "auto"
+---```
+---@field scanningMode? "auto" | "manual"
+---@field securityAtInception? _.lspconfig.settings.snyk_ls.Snyk.SecurityAtInception
+---Severity issues to display.
+---
+---```lua
+---default = {
+---  critical = true,
+---  high = true,
+---  low = true,
+---  medium = true
+---}
+---```
+---@field severity? _.lspconfig.settings.snyk_ls.Snyk.Severity
+---Folders to trust for Snyk scans.
+---
+---```lua
+---default = {}
+---```
+---@field trustedFolders? any[]
+---Send error reports to Snyk
+---
+---```lua
+---default = true
+---```
+---@field yesCrashReport? boolean
+---Show welcome notification after installation and restart
+---
+---```lua
+---default = true
+---```
+---@field yesWelcomeNotification? boolean
+
+---@class lspconfig.settings.snyk_ls
+---@field snyk? _.lspconfig.settings.snyk_ls.Snyk

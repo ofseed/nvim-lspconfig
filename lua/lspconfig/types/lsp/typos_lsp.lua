@@ -1,0 +1,31 @@
+---@meta
+
+---@class _.lspconfig.settings.typos_lsp.Typos.Trace
+---Traces the communication between VS Code and the language server. Recommended for debugging only.
+---
+---```lua
+---default = "off"
+---```
+---@field server? "off" | "messages" | "verbose"
+
+---@class _.lspconfig.settings.typos_lsp.Typos
+---Path to a custom config file. Used together with any workspace config files, taking precedence for settings declared in both.
+---@field config? string
+---How typos are rendered in the editor.
+---
+---```lua
+---default = "Information"
+---```
+---@field diagnosticSeverity? "Error" | "Warning" | "Information" | "Hint"
+---Logging level of the language server. Logs appear in the _Output -> Typos_ pane.
+---
+---```lua
+---default = "warn"
+---```
+---@field logLevel? "off" | "error" | "warn" | "info" | "debug" | "trace"
+---Path to the `typos-lsp` binary. If empty the bundled binary will be used.
+---@field path? string
+---@field trace? _.lspconfig.settings.typos_lsp.Typos.Trace
+
+---@class lspconfig.settings.typos_lsp
+---@field typos? _.lspconfig.settings.typos_lsp.Typos

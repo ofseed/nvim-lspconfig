@@ -1,0 +1,69 @@
+---@meta
+
+---Java debug options
+---
+---```lua
+---default = {
+---  tasks = { "run", "runBoot", "test", "intTest", "integration" }
+---}
+---```
+---@class _.lspconfig.settings.gradle_ls.Gradle.JavaDebug
+---Clean the task output cache before debugging
+---
+---```lua
+---default = true
+---```
+---@field clean? boolean
+---List of JavaExec tasks to debug
+---
+---```lua
+---default = { "run", "runBoot", "test", "intTest", "integration" }
+---```
+---@field tasks any[]
+
+---@class _.lspconfig.settings.gradle_ls.Gradle
+---Allow to run tasks in parallel, each running will create a new terminal. This configuration will override `gradle.reuseTerminals` and always create new task terminals when running or debugging a task.
+---@field allowParallelRun? boolean
+---Controls whether Gradle tasks should be automatically detected
+---
+---```lua
+---default = "on"
+---```
+---@field autoDetect? "off" | "on"
+---Show extra debug information in the output panel
+---@field debug? boolean
+---Disable the warning confirm messages when performing batch actions
+---@field disableConfirmations? boolean
+---Focus the task in the explorer when running a task
+---
+---```lua
+---default = true
+---```
+---@field focusTaskInExplorer? boolean
+---Java debug options
+---
+---```lua
+---default = {
+---  tasks = { "run", "runBoot", "test", "intTest", "integration" }
+---}
+---```
+---@field javaDebug? _.lspconfig.settings.gradle_ls.Gradle.JavaDebug
+---Discover Gradle projects in nested sub-directories
+---@field nestedProjects? boolean|any[]
+---Default method of opening newly created project.
+---
+---```lua
+---default = "Interactive"
+---```
+---@field projectOpenBehaviour? "Interactive" | "Open" | "Add to Workspace"
+---Reuse task terminals behaviour, will be overridden to `off` if `gradle.allowParallelRun` is true.
+---
+---```lua
+---default = "task"
+---```
+---@field reuseTerminals? "task" | "off" | "all"
+---Show stopped daemons in the Gradle Daemons view
+---@field showStoppedDaemons? boolean
+
+---@class lspconfig.settings.gradle_ls
+---@field gradle? _.lspconfig.settings.gradle_ls.Gradle

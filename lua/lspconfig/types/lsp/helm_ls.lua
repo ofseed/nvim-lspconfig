@@ -1,0 +1,47 @@
+---@meta
+
+---@class _.lspconfig.settings.helm_ls.HelmLs
+---The log level to use when running helm-ls.
+---
+---```lua
+---default = "info"
+---```
+---@field logLevel? string
+---The path to the helm-ls binary. If not set, the extension will search for the binary in the PATH or download it.
+---
+---```lua
+---default = ""
+---```
+---@field path? string
+---The values files to be used by helm-ls. Checkout the Readme of helm-ls for more information. Note that you must restart the language server or the editor to have the changes take effect.
+---
+---```lua
+---default = {
+---  additionalValuesFilesGlobPattern = "values*.yaml",
+---  lintOverlayValuesFile = "values.lint.yaml",
+---  mainValuesFile = "values.yaml"
+---}
+---```
+---@field valuesFiles? table
+---The yamlls config to pass to helm-ls. Checkout the Readme of helm-ls for more information. Note that you must restart the language server or the editor to have the changes take effect.
+---
+---```lua
+---default = {
+---  config = {
+---    completion = true,
+---    hover = true,
+---    schemas = {
+---      kubernetes = "templates/**"
+---    }
+---  },
+---  diagnosticsLimit = 50,
+---  enabled = true,
+---  enabledForFilesGlob = "*.{yaml,yml}",
+---  path = "yaml-language-server",
+---  showDiagnosticsDirectly = false
+---}
+---```
+---@field yamlls? table
+
+---@class lspconfig.settings.helm_ls
+---@field ["helm-ls"]? _.lspconfig.settings.helm_ls.HelmLs

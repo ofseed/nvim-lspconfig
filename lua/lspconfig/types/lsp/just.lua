@@ -1,0 +1,28 @@
+---@meta
+
+---@class _.lspconfig.settings.just.VscodeJust
+---Path to just binary.
+---
+---```lua
+---default = "just"
+---```
+---@field justPath? string
+---Set the log level. Recipe output is logged at the info level.
+---
+---```lua
+---default = "info"
+---```
+---@field logLevel? "info" | "warning" | "error" | "none"
+---Path to just-lsp binary.
+---
+---```lua
+---default = "just-lsp"
+---```
+---@field lspPath? string
+---Enable/disable running recipes in a terminal. If disabled, recipes will be logged to the extension output channel instead.
+---@field runInTerminal? boolean
+---If enabled along with runInTerminal, recipes will queued to run in a single terminal instance rather than creating a new terminal each time.
+---@field useSingleTerminal? boolean
+
+---@class lspconfig.settings.just
+---@field ["vscode-just"]? _.lspconfig.settings.just.VscodeJust

@@ -1,0 +1,298 @@
+---@meta
+
+---@class _.lspconfig.settings.metals.Metals.InlayHints.ByNameParameters
+---Enable/disable inlay hints for by-name parameters. 
+---```scala 
+---
+--- def foo(x: => Int) = ???
+--- foo(/*=> */1 + 2)
+--- foo {/*=> */
+---   val x = 1
+---   x + 1
+--- }
+---```
+---@field enable? boolean
+
+---@class _.lspconfig.settings.metals.Metals.InlayHints.ClosingLabels
+---Enable/disable inlay hints for closing labels. 
+---```scala 
+---
+---def number: Bar = {
+---  println("This is a long function"
+---}/*number*/
+---```
+---@field enable? boolean
+
+---@class _.lspconfig.settings.metals.Metals.InlayHints.HintsInPatternMatch
+---Enable/disable inlay hints in pattern matches. 
+---```scala 
+---
+--- case class Foo(a: Int, b: Int)
+--- val foo = Foo(1, 2)
+--- foo match {
+---   case Foo(a/*: Int*/, b/*: Int*/) =>
+--- }
+---```
+---@field enable? boolean
+
+---@class _.lspconfig.settings.metals.Metals.InlayHints.HintsXRayMode
+---Enable/disable inlay hints for x-ray like mode. 
+---```scala 
+---
+--- val finalBar: Bar = foo
+---  .bar/*  : Bar*/
+---  .foo()/*: Foo*/
+---  .bar/*  : Bar*/
+---```
+---@field enable? boolean
+
+---@class _.lspconfig.settings.metals.Metals.InlayHints.ImplicitArguments
+---Enable/disable inlay hints for implicit arguments. 
+---```scala 
+---
+--- given bar: Int = 123
+--- def foo(x: Int)(using Int) = ??? 
+--- foo(1)/*(using bar)*/
+---```
+---@field enable? boolean
+
+---@class _.lspconfig.settings.metals.Metals.InlayHints.ImplicitConversions
+---Enable/disable inlay hints for implicit conversions. 
+---```scala 
+---
+--- implicit class MInt(i: Int) {
+---   def incr: Int = i + 1
+--- }
+--- val x = /*MInt(*/1/*)*/.incr 
+---```
+---@field enable? boolean
+
+---@class _.lspconfig.settings.metals.Metals.InlayHints.InferredTypes
+---Enable/disable inlay hints for inferred variable types and method return types.
+---```scala 
+---
+--- val x/*: List[Int]*/ = List(1)
+--- def foo(x: Int)/*: Option[Int]*/ = Some(x)
+---```
+---@field enable? boolean
+
+---@class _.lspconfig.settings.metals.Metals.InlayHints.NamedParameters
+---Enable/disable inlay hints for named parameters. 
+---```scala 
+---
+--- def foo(number: Int) = ???
+--- foo(/*number = */1)
+---```
+---@field enable? boolean
+
+---@class _.lspconfig.settings.metals.Metals.InlayHints.TypeParameters
+---Enable/disable inlay hints for type parameters. 
+---```scala 
+---
+--- val x = List[Int](1)
+--- def foo[T](x: T) = x
+--- foo/*[Int]*/(1)
+---```
+---@field enable? boolean
+
+---@class _.lspconfig.settings.metals.Metals.InlayHints
+---@field byNameParameters? _.lspconfig.settings.metals.Metals.InlayHints.ByNameParameters
+---@field closingLabels? _.lspconfig.settings.metals.Metals.InlayHints.ClosingLabels
+---@field hintsInPatternMatch? _.lspconfig.settings.metals.Metals.InlayHints.HintsInPatternMatch
+---@field hintsXRayMode? _.lspconfig.settings.metals.Metals.InlayHints.HintsXRayMode
+---@field implicitArguments? _.lspconfig.settings.metals.Metals.InlayHints.ImplicitArguments
+---@field implicitConversions? _.lspconfig.settings.metals.Metals.InlayHints.ImplicitConversions
+---@field inferredTypes? _.lspconfig.settings.metals.Metals.InlayHints.InferredTypes
+---@field namedParameters? _.lspconfig.settings.metals.Metals.InlayHints.NamedParameters
+---@field typeParameters? _.lspconfig.settings.metals.Metals.InlayHints.TypeParameters
+
+---@class _.lspconfig.settings.metals.Metals.JavaFormat
+---Optional custom path to the eclipse-formatter.xml file.
+---
+---Should be an absolute path and use forward slashes `/` for file separators (even on Windows).
+---@field eclipseConfigPath? string
+---Optional Eclipse format profile to use.
+---@field eclipseProfile? string
+
+---@class _.lspconfig.settings.metals.Metals
+---Automatically import builds rather than prompting the user to choose. `initial` will only automatically import a build when a project is first opened, `all` will automate build imports after subsequent changes as well.
+---
+---```lua
+---default = "off"
+---```
+---@field autoImportBuilds? "off" | "initial" | "all"
+---Optional list of JVM properties to pass along to the Bloop server. Each property needs to be a separate item.
+---
+---Example: `-Xmx1G` or `-Xms100M`
+---@field bloopJvmProperties? string[]
+---If true, Metals will not generate a `project/metals.sbt` file under the assumption that sbt-bloop is already manually installed in the sbt build. Build import will fail with a 'not valid command bloopInstall' error in case Bloop is not manually installed in the build when using this option.
+---@field bloopSbtAlreadyInstalled? boolean
+---This version will be used for the Bloop build tool plugin, for any supported build tool,while importing in Metals as well as for running the embedded server
+---
+---```lua
+---default = "2.0.19"
+---```
+---@field bloopVersion? string
+---Optional alternative repository to maven central if maven central is not available. For example: `https://jcenter.bintray.com`, which will be used to set to property described [here](https://get-coursier.io/blog/#mirrors)
+---@field coursierMirror? string
+---Optional relative path to your project's root. If you want your project root to be the workspace/workspace root set it to "." .
+---
+---```lua
+---default = ""
+---```
+---@field customProjectRoot? string
+---Optional list of custom resolvers passed to Coursier when fetching metals dependencies.
+---
+---For documentation on accepted values see the [Coursier documentation](https://get-coursier.io/docs/other-repositories).
+---
+---The extension will pass these to Coursier using the COURSIER_REPOSITORIES environment variable after joining the custom repositories with a pipe character (|).
+---@field customRepositories? string[]
+---Default to using build tool as your build server.
+---@field defaultBspToBuildTool? boolean
+---Optionally provide a default shell executable to use for build operations.
+---@field defaultShell? string
+---Do not show release notes when Metals was updated.
+---@field disableReleaseNotes? boolean
+---Enable best effort mode for Metals in Scala 3. If enabled, Metals will try to provide most up to date information from the codebase even if it's not compiling.
+---@field enableBestEffort? boolean
+---When this option is enabled, when user pastes any snippet into a Scala file, Metals will try to adjust the indentation to that of the current cursor.
+---@field enableIndentOnPaste? boolean
+---When this option is enabled, Metals will provide semantic tokens for clients that support it. The feature is still experimental and does not work for all sources.
+---
+---```lua
+---default = true
+---```
+---@field enableSemanticHighlighting? boolean
+---When enabled, if you press the return key from the first line of a multiline string containing a pipe, it will automatically add `.stripMargin`.
+---
+---```lua
+---default = true
+---```
+---@field enableStripMarginOnTypeFormatting? boolean
+---List of packages you'd like to be left out of completions, symbol searches, and code actions.
+---
+---Ex. `akka.actor.typed.javadsl` will ensure nothing in the `javadsl` package gets recommended to you.
+---
+---You can find the list of default exclusions [here on the Metals website](https://scalameta.org/metals/docs/editors/user-configuration/#excluded-packages).
+---
+---If you need to remove one of the defaults, you can simply include it and preface it with `--`.
+---
+---```lua
+---default = {}
+---```
+---@field excludedPackages? string[]
+---The Scala compiler version that is used as the default or fallback in case a file doesn't belong to any build target or the specified Scala version isn't supported by Metals.
+---
+---This applies to standalone Scala files, worksheets, and Scala CLI scripts.
+---
+--- The `automatic` value means that the Scala version for these files will be inferred from the highest supported Scala version in your projects build definition
+---
+---```lua
+---default = "automatic"
+---```
+---@field fallbackScalaVersion? "automatic" | "2.13.18" | "2.13.17" | "2.13.16" | "2.13.15" | "2.12.20" | "2.12.19" | "2.12.18" | "2.12.17" | "2.11.12" | "3.7.4" | "3.7.3" | "3.7.2" | "3.7.1" | "3.3.7" | "3.3.6" | "3.3.5" | "3.3.4"
+---Do not attempt to download/use Coursier executable and instead use fallback JAR in order to skip downloading from GitHub. It will try to download coursier jar from configured repositories. If Maven Central is not available make sure that your internal repository is properly configured.
+---@field forceCoursierJar? boolean
+---Optional absolute path to a `gradle` executable to use for running `gradle bloopInstall`.
+---
+---By default, Metals uses an embedded `gradlew` script.
+---
+---Update this setting if your `gradle` script requires more customizations.
+---@field gradleScript? string
+---@field inlayHints? _.lspconfig.settings.metals.Metals.InlayHints
+---@field javaFormat? _.lspconfig.settings.metals.Metals.JavaFormat
+---Optional path to the Java home directory that will be used for compiling the project.
+---
+---Defaults to JDK used by Metals's server (look: Java Version).
+---
+---This Java version should be lower or equal to JDK version used by the Metals's server.
+---@field javaHome? string
+---JDK version used for running the Metals's server.
+---
+---Should be greater or equal to the JDK version used for the project (look: Java Home).
+---
+---```lua
+---default = "17"
+---```
+---@field javaVersion? "17" | "21" | "25"
+---Optional absolute path to a `mvn` executable to use for running `mvn ch.epfl.scala:maven-bloop_2.10:<bloop_version>:bloopInstall`.
+---
+---By default, Metals uses an embedded `mvnw` script.
+---
+---Update this setting if your `mvn` script requires more customizations.
+---@field mavenScript? string
+---Optional path to the Java home directory that will be used for the running Metals server.
+---
+---By default Metals will try to infer it using the version specified in metals.javaVersion.
+---
+---This Java version should be higher or equal to 17.
+---@field metalsJavaHome? string
+---Optional absolute path to a `mill` executable to use for running `mill mill.contrib.Bloop/install`.
+---
+---By default, Metals uses an embedded `millw` script while respecting `.mill-version` file.
+---
+---Update this setting if your `mill` script requires more customizations.
+---@field millScript? string
+---Optional absolute path to an `sbt` executable to use for running `sbt bloopInstall`.
+---
+---By default, Metals uses `java -jar sbt-launch.jar` with an embedded launcher while respecting `.jvmopts` and `.sbtopts`.
+---
+---Update this setting if your `sbt` script requires more customizations like using environment variables.
+---@field sbtScript? string
+---Optional path to Scala CLI launcher to use.
+---@field scalaCliLauncher? string
+---Optional custom path to the .scalafix.conf file.
+---
+---Should be an absolute path and use forward slashes `/` for file separators (even on Windows).
+---@field scalafixConfigPath? string
+---List of Scalafix rules dependencies in case they are not available by default in Metals and running scalafix fails due to 'rule not found' exception. For example: `com.github.liancheng::organize-imports:0.6.0` which follows the [coursier](https://get-coursier.io/) convention.
+---@field scalafixRulesDependencies? string[]
+---Optional custom path to the .scalafmt.conf file.
+---
+---Should be an absolute path and use forward slashes `/` for file separators (even on Windows).
+---@field scalafmtConfigPath? string
+---Optional list of properties to pass along to the Metals server. By default, the environment variable `JAVA_OPTS` and `.jvmopts` file are respected. Each property needs to be a separate item.
+---
+---Example: `-Dhttps.proxyHost=…`, `-Dhttps.proxyPort=…` or `-Dmetals.statistics=all`
+---
+---```lua
+---default = { "-Xmx2G", "-XX:+UseZGC", "-XX:ZUncommitDelay=30", "-XX:ZCollectionInterval=5", "-XX:+IgnoreUnrecognizedVMOptions" }
+---```
+---@field serverProperties? string[]
+---The version of the Metals server artifact. Requires reloading the window.  
+---
+---**VS Code extension version is guaranteed to work only with the default version, change if you know what you're doing**
+---
+---```lua
+---default = "1.6.6"
+---```
+---@field serverVersion? string
+---When enabled, when the last VS Code window with Metals is closed the extension will ask Metals to shut down the build server (Bloop). With multiple windows open, Bloop is only shut down when the last one closes. Machine-scoped because there is one Bloop process per machine. Disable if you run Bloop manually or want it to keep running after closing the editor.
+---@field shutdownBloopOnEditorClose? boolean
+---If Metals should start an HTTP Model Context Protocol server, that can be used by AI tools to provide better context about the codebase. Needs to be enabled in the client as well.
+---@field startMcpServer? boolean
+---How to handle server version upgrades when a new version is available
+---
+---```lua
+---default = "off"
+---```
+---@field suggestLatestUpgrade? "off" | "on" | "install"
+---Enable/disable goto super method code lens.
+---
+---```lua
+---default = true
+---```
+---@field superMethodLensesEnabled? boolean
+---Optional environment variables to pass to tests. Each key-value pair should be a separate item.
+---@field testEnvironmentVariables? table
+---Specifies which UI should be used for tests. `Code lenses` shows virtual text above test class, just like it was previously. `Test explorer` is a new option which shows gutter icons on the left of the file in a less intrusive way. Moreover, this option comes with a new panel called `Testing` which lists all test suites in your codebase and allows you to browse tests and navigate to the file which contains them.
+---
+---```lua
+---default = "Test Explorer"
+---```
+---@field testUserInterface? "Test Explorer" | "Code Lenses"
+---If a build server supports it (for example Bloop or Scala CLI), setting it to true will make the logs contain all the possible debugging information including that about incremental compilation in Zinc.
+---@field verboseCompilation? boolean
+
+---@class lspconfig.settings.metals
+---@field metals? _.lspconfig.settings.metals.Metals

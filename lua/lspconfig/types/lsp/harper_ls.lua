@@ -1,0 +1,3837 @@
+---@meta
+
+---@class _.lspconfig.settings.harper_ls.Harper.CodeActions
+---Make code actions appear in "stable" positions by placing code actions that should always be available, like adding misspelled words in the dictionary, first.
+---@field ForceStable? boolean
+
+---@class _.lspconfig.settings.harper_ls.Harper.Linters
+---Corrects `a couple of more` to `a couple more`.
+---
+---```lua
+---default = true
+---```
+---@field ACoupleMore? boolean
+---Corrects `along time` to `a long time`.
+---
+---```lua
+---default = true
+---```
+---@field ALongTime? boolean
+---Replaces the loose article-plus-abbreviation pairing with the standard hyphenated form whenever a linking verb describes readiness or approval.
+---
+---```lua
+---default = true
+---```
+---@field AOkHyphen? boolean
+---Finds and corrects common mistakes between 'a part' and 'apart'
+---
+---```lua
+---default = true
+---```
+---@field APart? boolean
+---Enforces `awhile` after verbs and `a while` everywhere else.
+---
+---```lua
+---default = true
+---```
+---@field AWhile? boolean
+---Corrects `as nauseam` to `ad nauseam`.
+---
+---```lua
+---default = true
+---```
+---@field AdNauseam? boolean
+---Replaces `addicting` with `addictive` when used as an adjective.
+---
+---```lua
+---default = true
+---```
+---@field Addicting? boolean
+---Finds adjectives that are used as double degrees (e.g. `more prettier`).
+---
+---```lua
+---default = true
+---```
+---@field AdjectiveDoubleDegree? boolean
+---This rule looks for sequences of words of the form `adjective of a`.
+---
+---```lua
+---default = true
+---```
+---@field AdjectiveOfA? boolean
+---Corrects `adieu` to `ado`.
+---
+---```lua
+---default = true
+---```
+---@field Ado? boolean
+---Corrects the missing article in `after while`, forming `after a while`.
+---
+---```lua
+---default = true
+---```
+---@field AfterAWhile? boolean
+---Corrects `afterall` to `after all`.
+---
+---```lua
+---default = true
+---```
+---@field AfterAll? boolean
+---Checks for the word `later` following `after [a period of time]`.
+---
+---```lua
+---default = true
+---```
+---@field AfterLater? boolean
+---Corrects `an` to `and` after `ahead`.
+---
+---```lua
+---default = true
+---```
+---@field AheadAnd? boolean
+---Corrects this expression to the standard `albeit`.
+---
+---```lua
+---default = true
+---```
+---@field Albeit? boolean
+---Corrects forms of `all hell breaks out` to `all hell breaks loose`.
+---
+---```lua
+---default = true
+---```
+---@field AllHellBreakLoose? boolean
+---Finds and corrects common wrong forms of the phrase 'for all intents and purposes' / 'to all intents and purposes'.
+---
+---```lua
+---default = true
+---```
+---@field AllIntentsAndPurposes? boolean
+---Guides this expression toward the standard `all of a sudden`.
+---
+---```lua
+---default = true
+---```
+---@field AllOfASudden? boolean
+---Flags `all ready` when it precedes an adjective so the adverb `already` can take its place.
+---
+---```lua
+---default = true
+---```
+---@field AllReady? boolean
+---Nobody means to write the two-word phrase `all though` when the single word `although` is intended.
+---
+---```lua
+---default = true
+---```
+---@field AllThough? boolean
+---Flags erroneous usage of `allow to` without a subject.
+---
+---```lua
+---default = true
+---```
+---@field AllowTo? boolean
+---Replaces the spaced form `along side` with `alongside`.
+---
+---```lua
+---default = true
+---```
+---@field Alongside? boolean
+---Fixes the common misnomer `old-timers' disease`, ensuring the correct medical term `Alzheimer’s disease` is used.
+---
+---```lua
+---default = true
+---```
+---@field AlzheimersDisease? boolean
+---Finds redundant am/pm indicators used together with time periods such as 'in the morning' or 'at night'.
+---
+---```lua
+---default = true
+---```
+---@field AmInTheMorning? boolean
+---When referring to the various products of Amazon.com, make sure to treat them as a proper noun.
+---
+---```lua
+---default = true
+---```
+---@field AmazonNames? boolean
+---When referring to North, Central, and South America, make sure to treat them as a proper noun.
+---
+---```lua
+---default = true
+---```
+---@field Americas? boolean
+---Corrects `amounts for` to either `amounts to` or `accounts for`
+---
+---```lua
+---default = true
+---```
+---@field AmountsFor? boolean
+---A rule that looks for incorrect indefinite articles. For example, `this is an mule` would be flagged as incorrect.
+---
+---```lua
+---default = true
+---```
+---@field AnA? boolean
+---Corrects `an another` and `a another`.
+---
+---```lua
+---default = true
+---```
+---@field AnAnother? boolean
+---Fixes the incorrect phrase `an in` to `and in` for proper conjunction usage.
+---
+---```lua
+---default = true
+---```
+---@field AndIn? boolean
+---Corrects mistakes in `and the like` and `or the like`.
+---
+---```lua
+---default = true
+---```
+---@field AndTheLike? boolean
+---Corrects `another an` to `another`.
+---
+---```lua
+---default = true
+---```
+---@field AnotherAn? boolean
+---Corrects `another ones`.
+---
+---```lua
+---default = true
+---```
+---@field AnotherOnes? boolean
+---Though `another think coming` is the original phrase, `another thing coming` is now more common.
+---
+---```lua
+---default = true
+---```
+---@field AnotherThingComing? boolean
+---Corrects `another things`.
+---
+---```lua
+---default = true
+---```
+---@field AnotherThings? boolean
+---Though `another thing coming` is now more common, `another think coming` is the original phrase.
+---@field AnotherThinkComing? boolean
+---Looks for incorrect spacing inside the closed compound `anybody`.
+---
+---```lua
+---default = true
+---```
+---@field Anybody? boolean
+---Looks for incorrect spacing inside the closed compound `anyhow`.
+---
+---```lua
+---default = true
+---```
+---@field Anyhow? boolean
+---Looks for incorrect spacing inside the closed compound `anywhere`.
+---
+---```lua
+---default = true
+---```
+---@field Anywhere? boolean
+---Flags the misspelling `apart form` and suggests `apart from`.
+---
+---```lua
+---default = true
+---```
+---@field ApartFrom? boolean
+---When referring to Apple products and services, make sure to treat them as proper nouns.
+---
+---```lua
+---default = true
+---```
+---@field AppleNames? boolean
+---Keeps schedules explicit by preferring the familiar `arrive on Friday` pattern instead of a bare weekday.
+---
+---```lua
+---default = true
+---```
+---@field ArriveOnWeekday? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field AsFarAsIKnow? boolean
+---Corrects nonstandard `as early back as` to `as far back as`.
+---
+---```lua
+---default = true
+---```
+---@field AsFarBackAs? boolean
+---Corrects the phrase `as follow`, which is sometimes produced by overcorrection. While it appeared briefly in 19th-century English, it is now considered archaic; modern standard usage requires `as follows` regardless of number.
+---
+---```lua
+---default = true
+---```
+---@field AsFollows? boolean
+---Corrects redundant `as if though`.
+---
+---```lua
+---default = true
+---```
+---@field AsIfThough? boolean
+---Corrects `as it so happens` to `as it happens`.
+---
+---```lua
+---default = true
+---```
+---@field AsItHappens? boolean
+---Corrects `aslong as` to `as long as`.
+---
+---```lua
+---default = true
+---```
+---@field AsLongAs? boolean
+---Corrects `as of currently` to `currently` or `as of now`.
+---
+---```lua
+---default = true
+---```
+---@field AsOfCurrently? boolean
+---Corrects `as of lately` to `lately` or `as of late`.
+---
+---```lua
+---default = true
+---```
+---@field AsOfLately? boolean
+---Corrects `as oppose to` to `as opposed to`.
+---
+---```lua
+---default = true
+---```
+---@field AsOpposedTo? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field AsSoonAsPossible? boolean
+---Identifies sequences like `ask to us` or `tell to him` and recommends removing the superfluous “to”.
+---
+---```lua
+---default = true
+---```
+---@field AskNoPreposition? boolean
+---Corrects `on face value` to the more usual `at face value`.
+---
+---```lua
+---default = true
+---```
+---@field AtFaceValue? boolean
+---Corrects `in the end of the day` to `at the end of the day`.
+---
+---```lua
+---default = true
+---```
+---@field AtTheEndOfTheDay? boolean
+---When referring to states, territories, and cities in Australia, make sure to treat them as a proper noun.
+---
+---```lua
+---default = true
+---```
+---@field Australia? boolean
+---Reduces redundancy by replacing `and also` with `and`.
+---
+---```lua
+---default = true
+---```
+---@field AvoidAndAlso? boolean
+---Flags offensive language and offers various ways to censor or replace with euphemisms.
+---
+---```lua
+---default = true
+---```
+---@field AvoidCurses? boolean
+---Suggests using either `await` or `wait for` but not both, as they express the same meaning.
+---
+---```lua
+---default = true
+---```
+---@field AwaitFor? boolean
+---Corrects `aware about` to the standard `aware of`.
+---
+---```lua
+---default = true
+---```
+---@field AwareOf? boolean
+---When referring to Azure cloud services, make sure to treat them as proper nouns.
+---
+---```lua
+---default = true
+---```
+---@field AzureNames? boolean
+---This linter flags instances of the nonstandard phrase `back in the days`. The correct, more accepted form is `back in the day`
+---
+---```lua
+---default = true
+---```
+---@field BackInTheDay? boolean
+---Looks for incorrect spacing inside the closed compound `backplane`.
+---
+---```lua
+---default = true
+---```
+---@field Backplane? boolean
+---Changes `bed rap` to the proper idiom `bad rap`.
+---
+---```lua
+---default = true
+---```
+---@field BadRap? boolean
+---Detects and corrects the common error of using `ban together` instead of the idiom `band together`, which means to unite or join forces.
+---
+---```lua
+---default = true
+---```
+---@field BanTogether? boolean
+---Ensures the phrase `bear in mind` is used correctly instead of `bare in mind`.
+---
+---```lua
+---default = true
+---```
+---@field BareInMind? boolean
+---Changes `baited breath` to the correct `bated breath`.
+---
+---```lua
+---default = true
+---```
+---@field BatedBreath? boolean
+---Ensures the passive form uses `be allowed` after future negatives.
+---
+---```lua
+---default = true
+---```
+---@field BeAllowed? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field BeRightBack? boolean
+---Fixes `back and call` to `beck and call`.
+---
+---```lua
+---default = true
+---```
+---@field BeckAndCall? boolean
+---Corrects the misspelling `bee there` to the proper phrase `been there`.
+---
+---```lua
+---default = true
+---```
+---@field BeenThere? boolean
+---`Beforehand` functions as a fixed adverb meaning ‘in advance’; writing it as two words or with a hyphen is nonstandard and can jar readers.
+---
+---```lua
+---default = true
+---```
+---@field Beforehand? boolean
+---Corrects `behind the scene` to `behind the scenes`.
+---
+---```lua
+---default = true
+---```
+---@field BehindTheScenes? boolean
+---Corrects `besides the point` to `beside the point`.
+---
+---```lua
+---default = true
+---```
+---@field BesideThePoint? boolean
+---Checks for nonstandard `of all times` in superlatives instead of singular `time`
+---
+---```lua
+---default = true
+---```
+---@field BestOfAllTime? boolean
+---In valedictions, `best` expresses your highest regard—avoid the typo `beat regards`.
+---
+---```lua
+---default = true
+---```
+---@field BestRegards? boolean
+---Corrects `better of with` to `better off with`.
+---
+---```lua
+---default = true
+---```
+---@field BetterOffWith? boolean
+---The verb `beware` naturally pairs with `of` before the noun being warned about, so swap other prepositions for clarity.
+---
+---```lua
+---default = true
+---```
+---@field BewareOf? boolean
+---Normalize the two-word sequence `black list`/`white list` so it matches the established compound noun or verb.
+---
+---```lua
+---default = true
+---```
+---@field BlacklistWhitelist? boolean
+---Corrects common errors in the phrase `blanket statement`.
+---
+---```lua
+---default = true
+---```
+---@field BlanketStatement? boolean
+---This rule looks for particularly boring or overused words. Using varied language is an easy way to keep a reader's attention.
+---@field BoringWords? boolean
+---Replaces the incorrect past-tense spelling `bough` with `bought` after subject pronouns.
+---
+---```lua
+---default = true
+---```
+---@field Bought? boolean
+---Looks for `brandish` wrongly used when `brand` is intended.
+---
+---```lua
+---default = true
+---```
+---@field BrandBrandish? boolean
+---Suggests the more standard and common synonym `brutality`.
+---
+---```lua
+---default = true
+---```
+---@field Brutality? boolean
+---English convention treats `built-in` as a single, attributive adjective—meaning something integrated from the outset—whereas other forms like `in built` are nonstandard and can feel awkward to readers.
+---
+---```lua
+---default = true
+---```
+---@field BuiltIn? boolean
+---Incorrect preposition: `by accident` is the idiomatic expression.
+---
+---```lua
+---default = true
+---```
+---@field ByAccident? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field ByTheWay? boolean
+---Looks for incorrect spacing inside the closed compound `bypass`.
+---
+---```lua
+---default = true
+---```
+---@field Bypass? boolean
+---Corrects `can be seem` to the proper phrase `can be seen`.
+---
+---```lua
+---default = true
+---```
+---@field CanBeSeen? boolean
+---When referring to provinces, territories, and cities in Canada, make sure to treat them as a proper noun.
+---
+---```lua
+---default = true
+---```
+---@field Canada? boolean
+---Suggests correcting `cant` to `can't`.
+---
+---```lua
+---default = true
+---```
+---@field Cant? boolean
+---Forgetting to capitalize personal pronouns, like "I" or "I'm" is one of the most common errors. This rule helps with that.
+---
+---```lua
+---default = true
+---```
+---@field CapitalizePersonalPronouns? boolean
+---Corrects `case and point` to `case in point`.
+---
+---```lua
+---default = true
+---```
+---@field CaseInPoint? boolean
+---Ensures `case-sensitive` is correctly hyphenated.
+---
+---```lua
+---default = true
+---```
+---@field CaseSensitive? boolean
+---Corrects confusion between `tale` (story) and `tail` (appendage) in common phrases.
+---
+---```lua
+---default = true
+---```
+---@field CautionaryTale? boolean
+---Looks for incorrect spacing inside the closed compound `chalkboard`.
+---
+---```lua
+---default = true
+---```
+---@field Chalkboard? boolean
+---Corrects `chomp at the bit` to the idiom `champ at the bit`, which has an equestrian origin referring to the way an anxious horse grinds its teeth against the metal part of the bridle.
+---
+---```lua
+---default = true
+---```
+---@field ChampAtTheBit? boolean
+---Locates errors in the idioms `to change tack` and `change of tack` to convey the correct meaning of altering one's course or strategy.
+---
+---```lua
+---default = true
+---```
+---@field ChangeTack? boolean
+---When referring to the political party, make sure to treat them as a proper noun.
+---
+---```lua
+---default = true
+---```
+---@field ChineseCommunistParty? boolean
+---Flags common soundalikes of "chock-full" and makes sure they're hyphenated.
+---
+---```lua
+---default = true
+---```
+---@field ChockFull? boolean
+---Hyphenates the verb+preposition pair when it directly precedes rate-style nouns, mirroring how these terms are commonly styled in analytics writing.
+---
+---```lua
+---default = true
+---```
+---@field ClickThroughRate? boolean
+---Corrects extraneous apostrophe in `client's side` and `server's side`.
+---
+---```lua
+---default = true
+---```
+---@field ClientOrServerSide? boolean
+---Fix common comma errors such as no space after, erroneous space before, etc., Asian commas instead of English commas, etc.
+---
+---```lua
+---default = true
+---```
+---@field CommaFixes? boolean
+---Ensure proper capitalization of companies, products, and trademarks.
+---
+---```lua
+---default = true
+---```
+---@field CompaniesProductsAndTrademarks? boolean
+---Detects compound nouns split by a space and suggests merging them when both parts form a valid noun.
+---
+---```lua
+---default = true
+---```
+---@field CompoundNouns? boolean
+---Promotes `I` in compound subjects headed by a possessive determiner.
+---
+---```lua
+---default = true
+---```
+---@field CompoundSubjectI? boolean
+---`Comprises` already contains the notion of `of`, so following it with another `of` is redundant.
+---
+---```lua
+---default = true
+---```
+---@field ComprisesOf? boolean
+---Suggests replacing the obsolete or archaic verb `compulse` with the standard `compel`.
+---
+---```lua
+---default = true
+---```
+---@field CompulseToCompel? boolean
+---Suggests removing `of` in `all of the` for a more concise phrase.
+---
+---```lua
+---default = true
+---```
+---@field CondenseAllThe? boolean
+---This linter detects instances where the noun `confidant` is incorrectly used in place of the adjective `confident`. `Confidant` refers to a trusted person, whereas `confident` describes certainty or self-assurance. The rule suggests replacing `confidant` with `confident` when used in an adjectival context.
+---
+---```lua
+---default = true
+---```
+---@field Confident? boolean
+---Corrects `conform` typos to `confirm`.
+---
+---```lua
+---default = true
+---```
+---@field ConfirmThat? boolean
+---Corrects `copywrite` to `copyright`. `Copywrite` refers to writing copy, while `copyright` is the legal right to creative works.
+---
+---```lua
+---default = true
+---```
+---@field Copyright? boolean
+---When making quick edits, it is common for authors to change the value of a number without changing its suffix. This rule looks for these cases, for example: `2st`.
+---
+---```lua
+---default = true
+---```
+---@field CorrectNumberSuffix? boolean
+---When referring to Countries, make sure to treat it as a proper noun.
+---
+---```lua
+---default = true
+---```
+---@field Countries? boolean
+---In English idioms, `to course` means to flow rapidly—so avoid the eggcorn `cursing through veins.`
+---
+---```lua
+---default = true
+---```
+---@field CoursingThroughVeins? boolean
+---The words “criteria” and “phenomena” are the plurals of “criterion” and “phenomenon”, respectively. They are often incorrectly used as singular.
+---
+---```lua
+---default = true
+---```
+---@field CriteriaPhenomena? boolean
+---Flags `cure against` and prefers the standard `cure for` pairing.
+---
+---```lua
+---default = true
+---```
+---@field CureFor? boolean
+---The location of currency symbols varies by country. The rule looks for and corrects improper positioning.
+---
+---```lua
+---default = true
+---```
+---@field CurrencyPlacement? boolean
+---Expands the informal abbreviation `cybersec` to `cybersecurity`.
+---
+---```lua
+---default = true
+---```
+---@field Cybersec? boolean
+---Checks for plural `damages` not in the context of a court case.
+---
+---```lua
+---default = true
+---```
+---@field Damages? boolean
+---Corrects the eggcorn `damp squid` to `damp squib`, ensuring the intended meaning of a failed or underwhelming outcome.
+---
+---```lua
+---default = true
+---```
+---@field DampSquib? boolean
+---Writers often type `--` or `---` expecting their editor to convert them into proper dashes. Replace these sequences with the correct characters: use an en dash (–) for ranges or connections and an em dash (—) for a break in thought.
+---
+---```lua
+---default = true
+---```
+---@field Dashes? boolean
+---Fixes wrong variants of the idiom `in this day and age`.
+---
+---```lua
+---default = true
+---```
+---@field DayAndAge? boolean
+---Ensure proper capitalization of Day One and Day One Premium as brand names.
+---
+---```lua
+---default = true
+---```
+---@field DayOneNames? boolean
+---Looks for incorrect spacing inside the closed compound `deadlift`.
+---
+---```lua
+---default = true
+---```
+---@field Deadlift? boolean
+---The name of the word `the` is `definite article`.
+---
+---```lua
+---default = true
+---```
+---@field DefiniteArticle? boolean
+---Corrects use of `degrees kelvin` to `kelvins`.
+---
+---```lua
+---default = true
+---```
+---@field DegreesKelvin? boolean
+---Corrects use of `°K` to `K`.
+---
+---```lua
+---default = true
+---```
+---@field DegreesKelvinSymbol? boolean
+---Looks for incorrect spacing inside the closed compound `desktop`.
+---
+---```lua
+---default = true
+---```
+---@field Desktop? boolean
+---Corrects `despite` being used with the wrong form of `is`.
+---
+---```lua
+---default = true
+---```
+---@field DespiteItIs? boolean
+---Corrects the misuse of `despite of` and suggests the proper alternatives `despite` or `in spite of`.
+---
+---```lua
+---default = true
+---```
+---@field DespiteOf? boolean
+---Looks for incorrect spacing inside the closed compound `devops`.
+---
+---```lua
+---default = true
+---```
+---@field Devops? boolean
+---Corrects past forms of verbs to their base form, when used together with "did".
+---
+---```lua
+---default = true
+---```
+---@field DidPast? boolean
+---Corrects `dint` to `didn't` after subject pronouns.
+---
+---```lua
+---default = true
+---```
+---@field Didnt? boolean
+---Corrects `digestive track` to `digestive tract`.
+---
+---```lua
+---default = true
+---```
+---@field DigestiveTract? boolean
+---Flags sentences that begin with a discourse marker but omit the required following comma.
+---
+---```lua
+---default = true
+---```
+---@field DiscourseMarkers? boolean
+---Removes unnecessary `about` after `discuss`.
+---
+---```lua
+---default = true
+---```
+---@field Discuss? boolean
+---Looks for words with their prefixes written with a space or hyphen between instead of joined.
+---
+---```lua
+---default = true
+---```
+---@field DisjointPrefixes? boolean
+---Swaps the helping verb `do` for `am` in `Do I <adjective>` questions so they use the correct linking verb.
+---
+---```lua
+---default = true
+---```
+---@field DoIAdjective? boolean
+---In English, negation still requires the complete verb form (`want`), so avoid truncating it to `wan.`
+---
+---```lua
+---default = true
+---```
+---@field DoNotWant? boolean
+---Corrects the typo `do to` when it is intended to mean `due to` in causal phrases.
+---
+---```lua
+---default = true
+---```
+---@field DoToDueTo? boolean
+---Tries to correct typos of `dose` to `does`.
+---
+---```lua
+---default = true
+---```
+---@field DoesOrDose? boolean
+---Corrects `don't can` to `can't` or `cannot`.
+---
+---```lua
+---default = true
+---```
+---@field DontCan? boolean
+---Ensures common initialisms (like "i.e.") are properly dot-separated.
+---
+---```lua
+---default = true
+---```
+---@field DotInitialisms? boolean
+---Encourages hyphenating `double-click` and its inflections.
+---
+---```lua
+---default = true
+---```
+---@field DoubleClick? boolean
+---Corrects variants of `double-edged sword`.
+---
+---```lua
+---default = true
+---```
+---@field DoubleEdgedSword? boolean
+---Two modal verbs in a row are rarely grammatical; remove one of them.
+---
+---```lua
+---default = true
+---```
+---@field DoubleModal? boolean
+---Replaces the determiner `no` with `any` when it follows the auxiliary `didn't/did not` plus a main verb (e.g., have, need, want, make, take, get) so the clause contains only one negation.
+---
+---```lua
+---default = true
+---```
+---@field DoubleNegative? boolean
+---Corrects `do diligence` to `due diligence`.
+---
+---```lua
+---default = true
+---```
+---@field DueDiligence? boolean
+---The idiomatic duration is 'for ages', so swap the initial preposition whenever the words refer to a general span.
+---
+---```lua
+---default = true
+---```
+---@field DuringAges? boolean
+---Corrects `each and everyone` to `each and every one`.
+---
+---```lua
+---default = true
+---```
+---@field EachAndEveryOne? boolean
+---Treats the phrase as a compound modifier and replaces the space with a hyphen so it reads like one idea.
+---
+---```lua
+---default = true
+---```
+---@field EagleEyed? boolean
+---Corrects the eggcorn `egg yoke`, replacing it with the standard culinary term `egg yolk`.
+---
+---```lua
+---default = true
+---```
+---@field EggYolk? boolean
+---Make sure you have the correct number of dots in your ellipsis.
+---
+---```lua
+---default = true
+---```
+---@field EllipsisLength? boolean
+---Detects missing apostrophes in phrases like `someone elses book` and suggests the correct possessive form `else’s`.
+---
+---```lua
+---default = true
+---```
+---@field ElsePossessive? boolean
+---Corrects `eluded to` to `alluded to` in contexts referring to indirect references.
+---
+---```lua
+---default = true
+---```
+---@field EludedTo? boolean
+---Detects variants like `on mass` or `in mass` and suggests `en masse`.
+---
+---```lua
+---default = true
+---```
+---@field EnMasse? boolean
+---Detects variants like `on route` or `in route` and suggests `en route`.
+---
+---```lua
+---default = true
+---```
+---@field EnRoute? boolean
+---Tries to correct typos of `every` instead of `ever`.
+---
+---```lua
+---default = true
+---```
+---@field EverEvery? boolean
+---Corrects the missing hyphen in `ever present` to the compound adjective `ever-present`.
+---
+---```lua
+---default = true
+---```
+---@field EverPresent? boolean
+---Corrects `every since` to `ever since`.
+---
+---```lua
+---default = true
+---```
+---@field EverSince? boolean
+---Corrects `every once and again` to `every once in a while` or `once again`.
+---
+---```lua
+---default = true
+---```
+---@field EveryOnceAndAgain? boolean
+---Corrects `everytime` to `every time`.
+---
+---```lua
+---default = true
+---```
+---@field EveryTime? boolean
+---Looks for incorrect spacing inside the closed compound `everybody`.
+---
+---```lua
+---default = true
+---```
+---@field Everybody? boolean
+---This rule tries to sort out confusing the adjective `everyday` and the adverb `every day`.
+---
+---```lua
+---default = true
+---```
+---@field Everyday? boolean
+---Looks for incorrect spacing inside the closed compound `everyone`.
+---
+---```lua
+---default = true
+---```
+---@field Everyone? boolean
+---Looks for incorrect spacing inside the closed compound `everywhere`.
+---
+---```lua
+---default = true
+---```
+---@field Everywhere? boolean
+---Provides a stronger word choice by replacing `very good` with `excellent` for clarity and emphasis.
+---
+---```lua
+---default = true
+---```
+---@field Excellent? boolean
+---Expands the abbreviation `alloc` to the full word `allocate` or `allocation` for clarity.
+---
+---```lua
+---default = true
+---```
+---@field ExpandAlloc? boolean
+---Expands the abbreviation `arg` to the full word `argument` for clarity.
+---
+---```lua
+---default = true
+---```
+---@field ExpandArgument? boolean
+---Expands the informal abbreviation `cuz` to the full word `because` for formality.
+---
+---```lua
+---default = true
+---```
+---@field ExpandBecause? boolean
+---Expands the informal abbreviation `ctrl` to the full word `control` for clarity.
+---
+---```lua
+---default = true
+---```
+---@field ExpandControl? boolean
+---Expands the abbreviation `decl` to the full word `declaration` or `declarator` for clarity.
+---
+---```lua
+---default = true
+---```
+---@field ExpandDecl? boolean
+---Expands the abbreviation `deps` to the full word `dependencies` for clarity.
+---
+---```lua
+---default = true
+---```
+---@field ExpandDependencies? boolean
+---Expands the abbreviation `deref` to the full word `dereference` for clarity.
+---
+---```lua
+---default = true
+---```
+---@field ExpandDeref? boolean
+---Expands the abbreviation `fwd` to the full word `forward` for clarity.
+---
+---```lua
+---default = true
+---```
+---@field ExpandForward? boolean
+---Expands memory-related abbreviations (`B`, `kB`, `MB`, `GB`, `TB`, `PB`, `KiB`, `MiB`, `GiB`, `TiB`, `PiB`, etc.) to their full forms (`byte`, `kilobyte`, `megabyte`, `gigabyte`, `terabyte`, `petabyte`, `kibibyte`, `mebibyte`, `gibibyte`, `tebibyte`, `pebibyte`, etc.).
+---
+---```lua
+---default = true
+---```
+---@field ExpandMemoryShorthands? boolean
+---Expands the abbreviation `min` to the full word `minimum` for clarity.
+---
+---```lua
+---default = true
+---```
+---@field ExpandMinimum? boolean
+---Expands the abbreviation `param` to the full word `parameter` for clarity.
+---
+---```lua
+---default = true
+---```
+---@field ExpandParameter? boolean
+---Expands the abbreviation `ptr` to the full word `pointer` for clarity.
+---
+---```lua
+---default = true
+---```
+---@field ExpandPointer? boolean
+---Expands the abbreviation `prev` to the full word `previous` for clarity.
+---
+---```lua
+---default = true
+---```
+---@field ExpandPrevious? boolean
+---Expands the abbreviations `stdin`, `stdout`, and `stderr` to the full words `standard input`, etc. for clarity.
+---
+---```lua
+---default = true
+---```
+---@field ExpandStandardInputAndOutput? boolean
+---Expands the informal spelling `thru` to the standard word `through`.
+---
+---```lua
+---default = true
+---```
+---@field ExpandThrough? boolean
+---Expands time-related abbreviations (`hr`, `hrs`, `min`, `mins`, `sec`, `secs`, `ms`, `msec`, `msecs`) to their full forms (`hour`, `hours`, `minute`, `minutes`, `second`, `seconds`, `millisecond`, `milliseconds`).
+---
+---```lua
+---default = true
+---```
+---@field ExpandTimeShorthands? boolean
+---Expands the abbreviation `w/` to the full word `with` for clarity.
+---
+---```lua
+---default = true
+---```
+---@field ExpandWith? boolean
+---Expands the abbreviation `w/o` to the full word `without` for clarity.
+---
+---```lua
+---default = true
+---```
+---@field ExpandWithout? boolean
+---Corrects the mistake of writing `expat` as two words.
+---
+---```lua
+---default = true
+---```
+---@field Expat? boolean
+---Fixes the misinterpretation of `expatriate`, ensuring the correct term is used for individuals residing abroad.
+---
+---```lua
+---default = true
+---```
+---@field Expatriate? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field ExplainLikeImFive? boolean
+---Corrects the eggcorn `explanation mark/point` to `exclamation mark/point`.
+---
+---```lua
+---default = true
+---```
+---@field ExplanationMark? boolean
+---Corrects `extend` to `extent` when the context is a noun.
+---
+---```lua
+---default = true
+---```
+---@field ExtendOrExtent? boolean
+---Ensures `face first` is correctly hyphenated as `face-first` when used before `into`.
+---
+---```lua
+---default = true
+---```
+---@field FaceFirst? boolean
+---Corrects malapropisms of `a fair bit`.
+---
+---```lua
+---default = true
+---```
+---@field FairBit? boolean
+---Corrects `far and few between` to the standard idiom `few and far between`.
+---
+---```lua
+---default = true
+---```
+---@field FarAndFewBetween? boolean
+---Flags misuse of `far be it` and suggests using `from` when it is followed by `for`
+---
+---```lua
+---default = true
+---```
+---@field FarBeIt? boolean
+---Ensures the correct prepositions are used with `fascinated` (e.g., `fascinated by` or `fascinated with`).
+---
+---```lua
+---default = true
+---```
+---@field FascinatedBy? boolean
+---Detects incorrect usage of `fast paste` or `fast-paste` and suggests `fast-paced` as the correct phrase.
+---
+---```lua
+---default = true
+---```
+---@field FastPaste? boolean
+---Replaces `fatal outcome` with the more direct term `death` for conciseness.
+---
+---```lua
+---default = true
+---```
+---@field FatalOutcome? boolean
+---Corrects `fed up of` to `fed up with` in dialects other than British English.
+---
+---```lua
+---default = true
+---```
+---@field FedUpWith? boolean
+---Corrects some expressions using `fell` where `feel` is correct.
+---
+---```lua
+---default = true
+---```
+---@field FeelFell? boolean
+---Ensures the correct use of `fetal position`, avoiding confusion with `feeble position`, which is not a standard phrase.
+---
+---```lua
+---default = true
+---```
+---@field FetalPosition? boolean
+---Corrects some expressions using `few` where `a few` is correct.
+---
+---```lua
+---default = true
+---```
+---@field FewUnitsOfTimeAgo? boolean
+---Removes filler words.
+---
+---```lua
+---default = true
+---```
+---@field FillerWords? boolean
+---Fixes the common typo where writers write `find` when they mean `fine`.
+---
+---```lua
+---default = true
+---```
+---@field FindFine? boolean
+---Detects when “kid” after “aid”, “starter”, “travel”, or “tool” should be “kit” (a set of supplies).
+---
+---```lua
+---default = true
+---```
+---@field FirstAidKit? boolean
+---Corrects mixing up `flesh out` and `full fledged`.
+---
+---```lua
+---default = true
+---```
+---@field FleshOutVsFullFledged? boolean
+---Corrects the idiom `foam out the mouth` to the standard `foam at the mouth`.
+---
+---```lua
+---default = true
+---```
+---@field FoamAtTheMouth? boolean
+---Corrects `flip the bill` to `foot the bill`.
+---
+---```lua
+---default = true
+---```
+---@field FootTheBill? boolean
+---Eliminates the incorrect merging in `for along time`.
+---
+---```lua
+---default = true
+---```
+---@field ForALongTime? boolean
+---Corrects the missing article in `for while`, forming `for a while`.
+---
+---```lua
+---default = true
+---```
+---@field ForAWhile? boolean
+---Corrects `for argument sake` to `for argument's sake`.
+---
+---```lua
+---default = true
+---```
+---@field ForArgumentsSake? boolean
+---Corrects the archaic or mistaken `fro` to `for` when followed by a noun.
+---
+---```lua
+---default = true
+---```
+---@field ForNoun? boolean
+---Corrects `for most part` to `for the most part`.
+---
+---```lua
+---default = true
+---```
+---@field ForTheMostPart? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field ForWhatItsWorth? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field ForYourInformation? boolean
+---Helps swap in `free` when a linking verb is followed by the noun `fee`.
+---
+---```lua
+---default = true
+---```
+---@field FreePredicate? boolean
+---Ensures the correct use of `free rein`, avoiding confusion with `free reign`, which incorrectly suggests authority rather than freedom of action.
+---
+---```lua
+---default = true
+---```
+---@field FreeRein? boolean
+---Encourages vivid writing by suggesting `freezing` instead of weaker expressions like `very cold.`
+---
+---```lua
+---default = true
+---```
+---@field Freezing? boolean
+---Corrects wrong pronoun usage in constructions like `a friend of me`.
+---
+---```lua
+---default = true
+---```
+---@field FriendOfMe? boolean
+---Ensures `from the get-go` is correctly hyphenated, preserving the idiom’s meaning of ‘from the very beginning’.
+---
+---```lua
+---default = true
+---```
+---@field FromTheGetGo? boolean
+---Looks for incorrect spacing inside the closed compound `furthermore`.
+---
+---```lua
+---default = true
+---```
+---@field Furthermore? boolean
+---Corrects common misspellings of the idiom `get rid of`.
+---
+---```lua
+---default = true
+---```
+---@field GetRidOf? boolean
+---Corrects `used of` to `used to`.
+---
+---```lua
+---default = true
+---```
+---@field GetUsedTo? boolean
+---If referring to the period of economic prosperity, the correct term is `Gilded Age`.
+---
+---```lua
+---default = true
+---```
+---@field GildedAge? boolean
+---Flags 'go so far to' when it should be 'go so far as to' to express going beyond expectations
+---
+---```lua
+---default = true
+---```
+---@field GoSoFarAsTo? boolean
+---Replaces `go at war` with `go to war`.
+---
+---```lua
+---default = true
+---```
+---@field GoToWar? boolean
+---Replaces the misspelling `goggle` when it is paired with a well-known Google service.
+---
+---```lua
+---default = true
+---```
+---@field GoggleBrand? boolean
+---Corrects `gong to` to the intended phrase `going to`.
+---
+---```lua
+---default = true
+---```
+---@field GoingTo? boolean
+---Checks for `good in` used instead of `good at` to describe proficiency with a skill.
+---
+---```lua
+---default = true
+---```
+---@field GoodAt? boolean
+---When referring to Google products and services, make sure to treat them as proper nouns.
+---
+---```lua
+---default = true
+---```
+---@field GoogleNames? boolean
+---Checks for the correct official name of the African country.
+---
+---```lua
+---default = true
+---```
+---@field GuineaBissau? boolean
+---Flags the unnecessary use of `of` after `had` and suggests the correct forms.
+---
+---```lua
+---default = true
+---```
+---@field HadOf? boolean
+---Fixes the eggcorn `half an our` to the accepted `half an hour`.
+---
+---```lua
+---default = true
+---```
+---@field HalfAnHour? boolean
+---Keeps the palm-sized quantity expressed by `handful` as one word.
+---
+---```lua
+---default = true
+---```
+---@field Handful? boolean
+---Corrects the eggcorn `half hazard` to `haphazard`, which properly means lacking organization or being random.
+---
+---```lua
+---default = true
+---```
+---@field Haphazard? boolean
+---Suggests `past` for `passed` in case a verb was intended.
+---
+---```lua
+---default = true
+---```
+---@field HavePassed? boolean
+---Flags questions that begin with `has` followed by a pronoun that requires `have`, such as `Has we …` or `Has I …`, and suggests the correct auxiliary.
+---
+---```lua
+---default = true
+---```
+---@field HavePronoun? boolean
+---Corrects either `have a look` or `take a look` to the other, depending on the dialect.
+---
+---```lua
+---default = true
+---```
+---@field HaveTakeALook? boolean
+---Corrects the misspelling `dos` after `he`, `she`, or `it`.
+---
+---```lua
+---default = true
+---```
+---@field HeDos? boolean
+---Corrects `heart` or `herd` to `heard` in common `have ... heard of/about` questions.
+---
+---```lua
+---default = true
+---```
+---@field HeartToHeard? boolean
+---Flags hedging language (e.g. `I would argue that`, `..., so to speak`, `to a certain degree`).
+---
+---```lua
+---default = true
+---```
+---@field Hedging? boolean
+---Encourages greeting someone with `hello` instead of the homophone `halo`.
+---
+---```lua
+---default = true
+---```
+---@field HelloGreeting? boolean
+---Looks for incorrect spacing inside the closed compound `henceforth`.
+---
+---```lua
+---default = true
+---```
+---@field Henceforth? boolean
+---`Here by` in some contexts should be `hereby`
+---
+---```lua
+---default = true
+---```
+---@field Hereby? boolean
+---Corrects `hidden into` to `hidden in`.
+---
+---```lua
+---default = true
+---```
+---@field HiddenIn? boolean
+---When referring to holidays, make sure to treat them as a proper noun.
+---
+---```lua
+---default = true
+---```
+---@field Holidays? boolean
+---Corrects misspellings of `holy war`.
+---
+---```lua
+---default = true
+---```
+---@field HolyWar? boolean
+---Corrects `hone in on` to `home in on`.
+---
+---```lua
+---default = true
+---```
+---@field HomeInOn? boolean
+---Handles common errors involving `hop` and `hope`. Ensures `hop` is used correctly in phrases like `hop on a bus` while correcting mistaken uses of `hope` in contexts where `hop` is expected.
+---
+---```lua
+---default = true
+---```
+---@field HopHope? boolean
+---Corrects `how ... looks like` to `how ... looks` or `what ... looks like`.
+---
+---```lua
+---default = true
+---```
+---@field HowItLooksLike? boolean
+---Swaps `how mach` or `how match` with the correct quantifier `how much`.
+---
+---```lua
+---default = true
+---```
+---@field HowMach? boolean
+---Detects the omission of `to` in constructions like `how clone / how install` and suggests `how to …`.
+---
+---```lua
+---default = true
+---```
+---@field HowTo? boolean
+---Looks for incorrect spacing inside the closed compound `however`.
+---
+---```lua
+---default = true
+---```
+---@field However? boolean
+---Eliminates the incorrect possessive/plural usage like `human's beings` or `humans beings`.
+---
+---```lua
+---default = true
+---```
+---@field HumanBeings? boolean
+---Changes `human live` to `human life`.
+---
+---```lua
+---default = true
+---```
+---@field HumanLife? boolean
+---Corrects `hunger pain` to `hunger pang`.
+---
+---```lua
+---default = true
+---```
+---@field HungerPang? boolean
+---Ensures a hyphen is used in `X-day` when it is part of a compound adjective, such as `4-day work week`.
+---
+---```lua
+---default = true
+---```
+---@field HyphenateNumberDay? boolean
+---Fixes the incorrect spacing in `I a m` to properly form `I am`.
+---
+---```lua
+---default = true
+---```
+---@field IAm? boolean
+---Corrects `I are` to `I am`.
+---
+---```lua
+---default = true
+---```
+---@field IAmAgreement? boolean
+---Corrects `I does` to `I do`.
+---
+---```lua
+---default = true
+---```
+---@field IDo? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field IDontKnow? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field IfIRecallCorrectly? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field IfIUnderstandCorrectly? boolean
+---Corrects `if I would've done` etc. to `if I had done` etc.
+---
+---```lua
+---default = true
+---```
+---@field IfWouldve? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field IfYouKnowYouKnow? boolean
+---After `imitate ...`, idiomatic phrasing points to the inspiration with `of` instead of `from`.
+---
+---```lua
+---default = true
+---```
+---@field ImitateFrom? boolean
+---Corrects `in hurry` to `in a hurry`.
+---
+---```lua
+---default = true
+---```
+---@field InAHurry? boolean
+---Corrects the missing article in `in while`, forming `in a while`.
+---
+---```lua
+---default = true
+---```
+---@field InAWhile? boolean
+---Corrects ungrammatical `in anyway` to `in any way`.
+---
+---```lua
+---default = true
+---```
+---@field InAnyWay? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field InCaseYouMissedIt? boolean
+---Corrects unidiomatic plural `in details` to `in detail`.
+---
+---```lua
+---default = true
+---```
+---@field InDetail? boolean
+---Corrects the misspelling `in lue of` to `in lieu of`.
+---
+---```lua
+---default = true
+---```
+---@field InLieuOf? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field InMyHumbleOpinion? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field InMyOpinion? boolean
+---Corrects `in need for` to `in need of`.
+---
+---```lua
+---default = true
+---```
+---@field InNeedOf? boolean
+---Corrects nonstandard `in of itself` to standard `in itself` or `in and of itself`.
+---
+---```lua
+---default = true
+---```
+---@field InOfItself? boolean
+---Corrects either `in the cards` or `on the cards` to the other, depending on the dialect.
+---
+---```lua
+---default = true
+---```
+---@field InOnTheCards? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field InRealLife? boolean
+---Detects and corrects a spacing error where `in the` is mistakenly written as `int he`. Proper spacing is essential for readability and grammatical correctness in common phrases.
+---
+---```lua
+---default = true
+---```
+---@field InThe? boolean
+---This rule looks for `to verb` where `verb` is not in the infinitive form.
+---
+---```lua
+---default = true
+---```
+---@field InflectedVerbAfterTo? boolean
+---Corrects nonstandard `initiatively`.
+---
+---```lua
+---default = true
+---```
+---@field Initiatively? boolean
+---Suggests the more standard and common synonym `insensitive`.
+---
+---```lua
+---default = true
+---```
+---@field Insensitive? boolean
+---Looks for incorrect spacing inside the closed compound `insofar`.
+---
+---```lua
+---default = true
+---```
+---@field Insofar? boolean
+---Looks for incorrect spacing inside the closed compound `instead`.
+---
+---```lua
+---default = true
+---```
+---@field Instead? boolean
+---Corrects the archaic or mistaken separation `in stead of` to `instead of` in everyday usage.
+---
+---```lua
+---default = true
+---```
+---@field InsteadOf? boolean
+---Suggests the more standard and common synonym `insurmountable`.
+---
+---```lua
+---default = true
+---```
+---@field Insurmountable? boolean
+---Prevents the erroneous spacing in `in tact`; `intact` is the single correct word.
+---
+---```lua
+---default = true
+---```
+---@field Intact? boolean
+---Ensures the correct preposition is used with the word `interested` (e.g. `interested in`).
+---
+---```lua
+---default = true
+---```
+---@field InterestedIn? boolean
+---`Invest` is traditionally followed by 'in,' not `into.`
+---
+---```lua
+---default = true
+---```
+---@field InvestIn? boolean
+---Typo: `known` is the correct past participle.
+---
+---```lua
+---default = true
+---```
+---@field IsKnownFor? boolean
+---Corrects the misspelling `It cam` to the proper phrase `It can`.
+---
+---```lua
+---default = true
+---```
+---@field ItCan? boolean
+---Corrects `it looks like that` to just `it looks like`.
+---
+---```lua
+---default = true
+---```
+---@field ItLooksLikeThat? boolean
+---The possessive `its` is often mistaken for `it's` when it is followed by vague pronouns (any-, every-, some-, or no- + body/one/thing/where).
+---
+---```lua
+---default = true
+---```
+---@field ItsContraction? boolean
+---In English, possessive pronouns never take an apostrophe. Use `its` to show ownership (e.g. “its texture”) and avoid confusing it with `it's`, which always means “it is” or “it has.”
+---
+---```lua
+---default = true
+---```
+---@field ItsPossessive? boolean
+---Looks for incorrect spacing inside the closed compound `itself`.
+---
+---```lua
+---default = true
+---```
+---@field Itself? boolean
+---Corrects the slip `I've go to` to the idiomatic `I've got to`.
+---
+---```lua
+---default = true
+---```
+---@field IveGotTo? boolean
+---Corrects `jar-dropping` to `jaw-dropping`, ensuring the intended meaning of something that causes amazement.
+---
+---```lua
+---default = true
+---```
+---@field JawDropping? boolean
+---Encourages the standard preposition after `jealous`.
+---
+---```lua
+---default = true
+---```
+---@field JealousOf? boolean
+---Ensure proper capitalization of Jetpack-related terms.
+---
+---```lua
+---default = true
+---```
+---@field JetpackNames? boolean
+---Recommends the proper spelling `Johns Hopkins`.
+---
+---```lua
+---default = true
+---```
+---@field JohnsHopkins? boolean
+---Ensures `just deserts` is used correctly, preserving its meaning of receiving an appropriate outcome for one's actions.
+---
+---```lua
+---default = true
+---```
+---@field JustDeserts? boolean
+---Looks for incorrect spacing inside the closed compound `keystroke`.
+---
+---```lua
+---default = true
+---```
+---@field Keystroke? boolean
+---Looks for incorrect spacing inside the closed compound `keystrokes`.
+---
+---```lua
+---default = true
+---```
+---@field Keystrokes? boolean
+---Corrects `kinda of` to `kind of`.
+---
+---```lua
+---default = true
+---```
+---@field KindOf? boolean
+---Changes `kid regards` to `kind regards`.
+---
+---```lua
+---default = true
+---```
+---@field KindRegards? boolean
+---Flags `kind if` or `sort off` that stand before qualifiers so the filler `of` stays intact.
+---
+---```lua
+---default = true
+---```
+---@field KindSortOf? boolean
+---When referring to the nations, make sure to treat them as a proper noun.
+---
+---```lua
+---default = true
+---```
+---@field Koreas? boolean
+---When referring to provinces and cities in Laos, make sure to treat them as a proper noun.
+---
+---```lua
+---default = true
+---```
+---@field Laos? boolean
+---Looks for incorrect spacing inside the closed compound `laptop`.
+---
+---```lua
+---default = true
+---```
+---@field Laptop? boolean
+---Corrects common errors in the phrase `last but not least`.
+---
+---```lua
+---default = true
+---```
+---@field LastButNotLeast? boolean
+---Corrects wrong variations of the idiomatic adjective `last-ditch`.
+---
+---```lua
+---default = true
+---```
+---@field LastDitch? boolean
+---Flags `yesterday night` and suggests the standard phrasing `last night`.
+---
+---```lua
+---default = true
+---```
+---@field LastNight? boolean
+---Warns when `laugh` takes `of` before a person or pronoun and nudges writers toward the conventional `at`.
+---
+---```lua
+---default = true
+---```
+---@field LaughOfAt? boolean
+---Flags nonstandard verb forms of `layout` (like `layouted` and `layouting`) and suggests the standard English verb forms (`laid out` and `laying out`).
+---
+---```lua
+---default = true
+---```
+---@field LayoutVerb? boolean
+---Corrects `leads rise to` to `gives rise to`.
+---
+---```lua
+---default = true
+---```
+---@field LeadRiseTo? boolean
+---When describing travel plans that include a destination and a time frame, prefer `leave for a destination` instead of `leave to a destination`.
+---
+---```lua
+---default = true
+---```
+---@field LeaveToFor? boolean
+---Ensures `left hand` and `right hand` are hyphenated when used as adjectives before a noun, such as in `left-hand side` or `right-hand corner`.
+---
+---```lua
+---default = true
+---```
+---@field LeftRightHand? boolean
+---Suggests alternatives to `less/least worse/worst` for more standard, clearer comparisons.
+---
+---```lua
+---default = true
+---```
+---@field LessWorse? boolean
+---Changes `let along` to `let alone`.
+---
+---```lua
+---default = true
+---```
+---@field LetAlone? boolean
+---Corrects extraneous `to` after `let`.
+---
+---```lua
+---default = true
+---```
+---@field LetToDo? boolean
+---It's often hard to determine where the subject should go with the word `let`. This rule attempts to find common errors with redundancy and contractions that may lead to confusion for readers.
+---
+---```lua
+---default = true
+---```
+---@field LetsConfusion? boolean
+---Corrects redundant `like as if` to `like` or `as if`.
+---
+---```lua
+---default = true
+---```
+---@field LikeAsIf? boolean
+---Corrects `like a plague` to `like the plague`.
+---
+---```lua
+---default = true
+---```
+---@field LikeThePlague? boolean
+---Corrects `like no tomorrow` to `like there's no tomorrow`.
+---
+---```lua
+---default = true
+---```
+---@field LikeTheresNoTomorrow? boolean
+---Treat the split tokens as one compound word (`likelihood`) whenever the adjective `likely` precedes `hood`.
+---
+---```lua
+---default = true
+---```
+---@field LikelyHood? boolean
+---Looks for incorrect spacing inside the closed compound `likewise`.
+---
+---```lua
+---default = true
+---```
+---@field Likewise? boolean
+---Corrects pluralizing the wrong noun in `lines of code`.
+---
+---```lua
+---default = true
+---```
+---@field LinesOfCode? boolean
+---Offers direct-positive alternatives when double negatives might feel heavy.
+---
+---```lua
+---default = true
+---```
+---@field LitotesDirectPositive? boolean
+---This rule looks for run-on sentences, which can make your work harder to grok.
+---
+---```lua
+---default = true
+---```
+---@field LongSentences? boolean
+---Corrects `look one's nose down` to `look down one's nose`
+---
+---```lua
+---default = true
+---```
+---@field LookDownOnesNose? boolean
+---This rule identifies instances where the phrase `looking forward to` is followed by a base form verb instead of the required gerund (verb + `-ing` form).
+---
+---```lua
+---default = true
+---```
+---@field LookingForwardTo? boolean
+---This rule turns `looks likes`, `looked likes`, and `looking likes` into the idiomatic `look ... like`.
+---
+---```lua
+---default = true
+---```
+---@field LooksLikes? boolean
+---Corrects nonstandard variants of `low-hanging fruit`.
+---
+---```lua
+---default = true
+---```
+---@field LowHangingFruit? boolean
+---Corrects `make due` to `make do` when followed by `with`.
+---
+---```lua
+---default = true
+---```
+---@field MakeDoWith? boolean
+---Corrects `make it seems` to `make it seem`.
+---
+---```lua
+---default = true
+---```
+---@field MakeItSeem? boolean
+---Corrects `make senses` to `make sense`.
+---
+---```lua
+---default = true
+---```
+---@field MakeSense? boolean
+---When referring to the states of Malaysia and their capitals, make sure to treat them as a proper noun.
+---
+---```lua
+---default = true
+---```
+---@field Malaysia? boolean
+---Corrects the eggcorn `managerial reigns` to the idiomatic `managerial reins`.
+---
+---```lua
+---default = true
+---```
+---@field ManagerialReins? boolean
+---Detects mass nouns used as countable nouns.
+---
+---```lua
+---default = true
+---```
+---@field MassNouns? boolean
+---Connect the separate words `Mercedes` and `Benz` whenever they appear together so the brand stays consistent with its official styling.
+---
+---```lua
+---default = true
+---```
+---@field MercedesBenzHyphen? boolean
+---Accidentally inserting a space inside a word is common. This rule looks for valid words that are split by whitespace.
+---
+---```lua
+---default = true
+---```
+---@field MergeWords? boolean
+---When referring to Meta products and services, make sure to treat them as proper nouns.
+---
+---```lua
+---default = true
+---```
+---@field MetaNames? boolean
+---When referring to Microsoft products and services, make sure to treat them as proper nouns.
+---
+---```lua
+---default = true
+---```
+---@field MicrosoftNames? boolean
+---Looks for incorrect spacing inside the closed compound `middleware`.
+---
+---```lua
+---default = true
+---```
+---@field Middleware? boolean
+---Detects likely missing determiners in common request phrases and offers to insert one where necessary.
+---
+---```lua
+---default = true
+---```
+---@field MissingDeterminer? boolean
+---Locates potentially missing prepositions.
+---
+---```lua
+---default = true
+---```
+---@field MissingPreposition? boolean
+---Flags verbs and adjectives like `need`, `want`, or `ready` that are missing `to` before an infinitive.
+---
+---```lua
+---default = true
+---```
+---@field MissingTo? boolean
+---Ensures `misspell` and its inflected forms are written as a single word.
+---
+---```lua
+---default = true
+---```
+---@field Misspell? boolean
+---Looks for incorrect spacing inside the closed compound `misunderstand`.
+---
+---```lua
+---default = true
+---```
+---@field Misunderstand? boolean
+---Looks for incorrect spacing inside the closed compound `misunderstood`.
+---
+---```lua
+---default = true
+---```
+---@field Misunderstood? boolean
+---Looks for incorrect spacing inside the closed compound `misuse`.
+---
+---```lua
+---default = true
+---```
+---@field Misuse? boolean
+---Looks for incorrect spacing inside the closed compound `misused`.
+---
+---```lua
+---default = true
+---```
+---@field Misused? boolean
+---Corrects the eggcorn `mixed bad` to `mixed bag`.
+---
+---```lua
+---default = true
+---```
+---@field MixedBag? boolean
+---Looks for `be` missing between a modal verb and adjective.
+---
+---```lua
+---default = true
+---```
+---@field ModalBeAdjective? boolean
+---Detects `of` mistakenly used with `would`, `could`, `should`, etc.
+---
+---```lua
+---default = true
+---```
+---@field ModalOf? boolean
+---Detects modal verbs followed by `seen` before adjectives and suggests `seem` or `be`.
+---
+---```lua
+---default = true
+---```
+---@field ModalSeem? boolean
+---Detects months written with a lowercase first letter.
+---
+---```lua
+---default = true
+---```
+---@field Months? boolean
+---Advises using `momentous` or `monumental` instead of `monumentous` for serious usage.
+---
+---```lua
+---default = true
+---```
+---@field Monumentous? boolean
+---Corrects `mute` to `moot` in the phrase `moot point`.
+---
+---```lua
+---default = true
+---```
+---@field MootPoint? boolean
+---Looks for comparative adjective constructions with `more` than could use inflected forms.
+---
+---```lua
+---default = true
+---```
+---@field MoreAdjective? boolean
+---Finds redundant paring of `more` or `most` with adjectives already in the comparative or superlative form.
+---
+---```lua
+---default = true
+---```
+---@field MoreBetter? boolean
+---Corrects `most number` and `most amount`
+---
+---```lua
+---default = true
+---```
+---@field MostNumber? boolean
+---Corrects `a lot of the times` and `most of the times` to use singular `time`.
+---
+---```lua
+---default = true
+---```
+---@field MostOfTheTimes? boolean
+---Looks for incorrect spacing inside the closed compound `multicore`.
+---
+---```lua
+---default = true
+---```
+---@field Multicore? boolean
+---Looks for incorrect spacing inside the closed compound `multimedia`.
+---
+---```lua
+---default = true
+---```
+---@field Multimedia? boolean
+---Looks for adjacent adverbs of frequency, which will be either redundant or contradictory.
+---
+---```lua
+---default = true
+---```
+---@field MultipleFrequencyAdverbs? boolean
+---When editing work to change point of view (i.e. first-person or third-person) it is common to add pronouns while neglecting to remove old ones. This rule catches cases where you have multiple disparate pronouns in sequence.
+---
+---```lua
+---default = true
+---```
+---@field MultipleSequentialPronouns? boolean
+---Looks for incorrect spacing inside the closed compound `multithreading`.
+---
+---```lua
+---default = true
+---```
+---@field Multithreading? boolean
+---Fixes the typo `mu house` to `my house`.
+---
+---```lua
+---default = true
+---```
+---@field MyHouse? boolean
+---Looks for incorrect spacing inside the closed compound `myself`.
+---
+---```lua
+---default = true
+---```
+---@field Myself? boolean
+---Replaces hat/had/hit/hid in the idiom `nail on the head` with `head`.
+---
+---```lua
+---default = true
+---```
+---@field NailOnTheHead? boolean
+---When referring to national capitals, make sure to treat it as a proper noun.
+---
+---```lua
+---default = true
+---```
+---@field NationalCapitals? boolean
+---Changes `ned help` to the correct `need help`.
+---
+---```lua
+---default = true
+---```
+---@field NeedHelp? boolean
+---Flags `need to` when it is immediately followed by a noun, which usually means the infinitive verb is missing.
+---
+---```lua
+---default = true
+---```
+---@field NeedToNoun? boolean
+---Corrects common misspellings and missing hyphen in `nerve-racking`.
+---
+---```lua
+---default = true
+---```
+---@field NerveRacking? boolean
+---Suggests using `nervous wreck` when referring to a person's emotional state.
+---
+---```lua
+---default = true
+---```
+---@field NervousWreck? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field NeverMind? boolean
+---Stops users from accidentally inserting French spaces.
+---
+---```lua
+---default = true
+---```
+---@field NoFrenchSpaces? boolean
+---Corrects `not longer` when it should be `no longer`.
+---
+---```lua
+---default = true
+---```
+---@field NoLonger? boolean
+---No match for
+---
+---```lua
+---default = true
+---```
+---@field NoMatchFor? boolean
+---The Oxford comma is one of the more controversial rules in common use today. Enabling this lint checks that there is no comma before `and`, `or` or `nor` when listing out more than two ideas.
+---@field NoOxfordComma? boolean
+---Corrects the frequent typos that swap the Nobel/Peace/Prize spelling when people mention the prize.
+---
+---```lua
+---default = true
+---```
+---@field NobelPeacePrize? boolean
+---Looks for incorrect spacing inside the closed compound `nobody`.
+---
+---```lua
+---default = true
+---```
+---@field Nobody? boolean
+---Ensures you use the correct `want` / `wants` after a nominal.
+---
+---```lua
+---default = true
+---```
+---@field NominalWants? boolean
+---Looks for incorrect spacing inside the closed compound `nonetheless`.
+---
+---```lua
+---default = true
+---```
+---@field Nonetheless? boolean
+---Corrects the order of the pronoun and modal verb after `nor`.
+---
+---```lua
+---default = true
+---```
+---@field NorModalPronoun? boolean
+---Removes the redundant linking verb that sneaks in between `not` and the predicate after a conjugated `be`.
+---
+---```lua
+---default = true
+---```
+---@field NotBeAfterNot? boolean
+---Replaces `no in` with `not in`.
+---
+---```lua
+---default = true
+---```
+---@field NotIn? boolean
+---Corrects `no only` to `not only` before forms of `to be`.
+---
+---```lua
+---default = true
+---```
+---@field NotOnly? boolean
+---Corrects `not only it is` to `not only is it`
+---
+---```lua
+---default = true
+---```
+---@field NotOnlyInversion? boolean
+---Corrects `no to` to `not to`, ensuring proper negation.
+---
+---```lua
+---default = true
+---```
+---@field NotTo? boolean
+---Ensure proper capitalization of notable places that are significant regional centers, travel destinations, or have international importance.
+---
+---```lua
+---default = true
+---```
+---@field NotablePlaces? boolean
+---Looks for incorrect spacing inside the closed compound `nothing`.
+---
+---```lua
+---default = true
+---```
+---@field Nothing? boolean
+---Looks for incorrect spacing inside the closed compound `notwithstanding`.
+---
+---```lua
+---default = true
+---```
+---@field Notwithstanding? boolean
+---Handles common confusions between related nouns and verbs (e.g., 'advice/advise', 'breath/breathe')
+---
+---```lua
+---default = true
+---```
+---@field NounVerbConfusion? boolean
+---Corrects `now way` to `no way` in high-confidence contexts while avoiding comparative contexts like `now way too`.
+---
+---```lua
+---default = true
+---```
+---@field NowWay? boolean
+---Looks for incorrect spacing inside the closed compound `nowhere`.
+---
+---```lua
+---default = true
+---```
+---@field Nowhere? boolean
+---You should never capitalize number suffixes.
+---
+---```lua
+---default = true
+---```
+---@field NumberSuffixCapitalization? boolean
+---Ensures valid prepositions are used with `obsess`
+---
+---```lua
+---default = true
+---```
+---@field ObsessPreposition? boolean
+---When referring to the world's oceans and seas, ensure they are treated as proper nouns.
+---
+---```lua
+---default = true
+---```
+---@field OceansAndSeas? boolean
+---Detects common mistaken forms of `of course`.
+---
+---```lua
+---default = true
+---```
+---@field OfCourse? boolean
+---Ensures `off-the-cuff` is correctly hyphenated.
+---
+---```lua
+---default = true
+---```
+---@field OffTheCuff? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field OhMyGod? boolean
+---Corrects `old wise tale` to `old wives' tale`, preserving the phrase’s meaning as an unfounded traditional belief.
+---
+---```lua
+---default = true
+---```
+---@field OldWivesTale? boolean
+---Detects the idiom `oldest X in the books`, which should use singular `book`.
+---
+---```lua
+---default = true
+---```
+---@field OldestInTheBook? boolean
+---The standard idiom starts with `at` for quick appraisals, so swap the preposition to keep the phrase idiomatic.
+---
+---```lua
+---default = true
+---```
+---@field OnFirstGlance? boolean
+---This rule identifies incorrect uses of the prepositions `in` or `at` when referring to locations inside a building and recommends using `on the floor` instead.
+---
+---```lua
+---default = true
+---```
+---@field OnFloor? boolean
+---Replaces the nonstandard `on second though` with the common idiom `on second thought` to indicate reconsideration.
+---
+---```lua
+---default = true
+---```
+---@field OnSecondThought? boolean
+---Ensures the correct use of `on the spur of the moment`, avoiding nonstandard variations.
+---
+---```lua
+---default = true
+---```
+---@field OnTheSpurOfTheMoment? boolean
+---Corrects `ontop of` and `in top of` to `on top of`.
+---
+---```lua
+---default = true
+---```
+---@field OnTopOf? boolean
+---Corrects two common malapropisms of `once in a while`.
+---
+---```lua
+---default = true
+---```
+---@field OnceInAWhile? boolean
+---Detects the mistaken phrase `once a twice` and suggests `once or twice`.
+---
+---```lua
+---default = true
+---```
+---@field OnceOrTwice? boolean
+---This linter flags instances of the nonstandard phrase `one in the same`. The correct, more accepted form is `one and the same`
+---
+---```lua
+---default = true
+---```
+---@field OneAndTheSame? boolean
+---Corrects `one foul swoop` to `one fell swoop`, preserving the phrase’s original meaning of sudden and complete action.
+---
+---```lua
+---default = true
+---```
+---@field OneFellSwoop? boolean
+---Treat 'one handed' and 'two handed' as single adjectives before nouns so the measurement stays attached to 'handed'.
+---
+---```lua
+---default = true
+---```
+---@field OneHanded? boolean
+---Corrects 'one of the [singular]' to 'one of the [plural]'
+---
+---```lua
+---default = true
+---```
+---@field OneOfTheSingular? boolean
+---Corrects compound words that should be written as two words.
+---
+---```lua
+---default = true
+---```
+---@field OpenCompounds? boolean
+---Corrects using `open` instead of `turn on` or `switch on`
+---
+---```lua
+---default = true
+---```
+---@field OpenTheLight? boolean
+---Ensures `operating system` is used correctly instead of `operative system`.
+---
+---```lua
+---default = true
+---```
+---@field OperatingSystem? boolean
+---Ensures word casing matches the dictionary's canonical orthography.
+---
+---```lua
+---default = true
+---```
+---@field OrthographicConsistency? boolean
+---Detects the mistaken `out to be` and suggests `ought to be`, while ignoring legitimate phrasal-verb uses such as `turn out to be` and `make it out to be`.
+---
+---```lua
+---default = true
+---```
+---@field OughtToBe? boolean
+---Ensures that the phrase `out of date` is written with a hyphen as `out-of-date` when used as a compound adjective.
+---
+---```lua
+---default = true
+---```
+---@field OutOfDate? boolean
+---Corrects `out of sink` to `out of sync` or `out of synch`.
+---
+---```lua
+---default = true
+---```
+---@field OutOfSync? boolean
+---Looks for incorrect spacing inside the closed compound `overall`.
+---
+---```lua
+---default = true
+---```
+---@field Overall? boolean
+---Looks for incorrect spacing inside the closed compound `overclocking`.
+---
+---```lua
+---default = true
+---```
+---@field Overclocking? boolean
+---Looks for incorrect spacing inside the closed compound `overload`.
+---
+---```lua
+---default = true
+---```
+---@field Overload? boolean
+---Looks for incorrect spacing inside the closed compound `overnight`.
+---
+---```lua
+---default = true
+---```
+---@field Overnight? boolean
+---The Oxford comma is one of the more controversial rules in common use today. Enabling this lint checks that there is a comma before `and`, `or`, or `nor` when listing out more than two ideas.
+---
+---```lua
+---default = true
+---```
+---@field OxfordComma? boolean
+---Flags oxymoronic phrases (e.g. `amateur expert`, `increasingly less`, etc.).
+---
+---```lua
+---default = true
+---```
+---@field Oxymorons? boolean
+---Corrects pluralizing the wrong noun in `part of speech`.
+---
+---```lua
+---default = true
+---```
+---@field PartsOfSpeech? boolean
+---Corrects `passerbys` and `passer-bys` to `passersby` or `passers-by`.
+---
+---```lua
+---default = true
+---```
+---@field PassersBy? boolean
+---Keeps the compound adjective together before nouns like folders, files, or web pages so the dependency between them is clear.
+---
+---```lua
+---default = true
+---```
+---@field PasswordProtectedHyphen? boolean
+---Corrects `piece of mind` to `peace of mind`.
+---
+---```lua
+---default = true
+---```
+---@field PeaceOfMind? boolean
+---Corrects the eggcorn `pedal to the medal` to the standard idiom `pedal to the metal`, meaning to accelerate at full speed.
+---
+---```lua
+---default = true
+---```
+---@field PedalToTheMetal? boolean
+---Corrects `peak behind the curtain` to `peek behind the curtain`.
+---
+---```lua
+---default = true
+---```
+---@field PeekBehindTheCurtain? boolean
+---Corrects common misspellings of `per se`.
+---
+---```lua
+---default = true
+---```
+---@field PerSe? boolean
+---This rule looks for phrasal verbs written as compound nouns.
+---
+---```lua
+---default = true
+---```
+---@field PhrasalVerbAsCompoundNoun? boolean
+---Corrects the eggcorn `piggy bag` to `piggyback`, which is the proper term for riding on someone’s back or using an existing system.
+---
+---```lua
+---default = true
+---```
+---@field Piggyback? boolean
+---Detects incorrect usage of `peak` or `peek` when the intended word is `pique`, as in the phrase `you've peaked my interest`.
+---
+---```lua
+---default = true
+---```
+---@field PiqueInterest? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field PleaseTakeALook? boolean
+---Flags plural decades erroneously using an apostrophe before the `s`
+---
+---```lua
+---default = true
+---```
+---@field PluralDecades? boolean
+---Corrects noun phrases that pluralize the last noun instead of the main noun.
+---
+---```lua
+---default = true
+---```
+---@field PluralWrongWordOfPhrase? boolean
+---Ensure proper capitalization of Pocket Casts and Pocket Casts Plus as brand names.
+---
+---```lua
+---default = true
+---```
+---@field PocketCastsNames? boolean
+---Corrects pluralizing the wrong noun in `point of view`.
+---
+---```lua
+---default = true
+---```
+---@field PointsOfView? boolean
+---Checks for the correct official name of the capital of Haiti.
+---
+---```lua
+---default = true
+---```
+---@field PortAuPrince? boolean
+---Checks for the correct official name of the capital of Benin.
+---
+---```lua
+---default = true
+---```
+---@field PortoNovo? boolean
+---Use an apostrophe and `s` to form a noun’s possessive.
+---@field PossessiveNoun? boolean
+---The possessive form of `you` is more likely before nouns.
+---
+---```lua
+---default = true
+---```
+---@field PossessiveYour? boolean
+---Looks for incorrect spacing inside the closed compound `postpone`.
+---
+---```lua
+---default = true
+---```
+---@field Postpone? boolean
+---Corrects `preying mantis` to `praying mantis`, ensuring accurate reference to the insect’s characteristic pose.
+---
+---```lua
+---default = true
+---```
+---@field PrayingMantis? boolean
+---Detects the ungrammatical patterns `<pronoun> have …ing` (e.g., `I have …ing`) and `<pronoun>'ve …ing` (e.g., `I've …ing`) and suggests either the present progressive (e.g., `I'm/We're/You're/They're …`) or the present perfect progressive (e.g., `I/We/You/They have been …` or `I've/We've/You've/They've been …`).
+---
+---```lua
+---default = true
+---```
+---@field ProgressiveNeedsBe? boolean
+---Spots the letter `r` used in place of `are` or `you're` after plural first- or second-person pronouns.
+---
+---```lua
+---default = true
+---```
+---@field PronounAre? boolean
+---Choosing when to contract pronouns is a challenging art. This rule looks for faults.
+---
+---```lua
+---default = true
+---```
+---@field PronounContraction? boolean
+---Checks subject–verb agreement for the verb `be`. Third-person singular pronouns (`he`, `she`, `it`) require the singular form `is`, while the plural pronoun `they` takes `are`. The linter flags mismatches such as `He are` or `They is` and offers the correct concord.
+---
+---```lua
+---default = true
+---```
+---@field PronounInflectionBe? boolean
+---Detects when “new” following a pronoun (optionally with an adverb) is a typo for the past tense “knew.”
+---
+---```lua
+---default = true
+---```
+---@field PronounKnew? boolean
+---Ensures pronouns agree with their verbs.
+---
+---```lua
+---default = true
+---```
+---@field PronounVerbAgreement? boolean
+---Looks for incorrect spacing inside the closed compound `proofread`.
+---
+---```lua
+---default = true
+---```
+---@field Proofread? boolean
+---Ensure proper capitalization of proper nouns.
+---
+---```lua
+---default = true
+---```
+---@field ProperNouns? boolean
+---Detects missing `of` after the quantifier “a couple” when it precedes a plural noun
+---
+---```lua
+---default = true
+---```
+---@field QuantifierNeedsOf? boolean
+---Detects quantifier-numeral conflicts
+---
+---```lua
+---default = true
+---```
+---@field QuantifierNumeralConflict? boolean
+---Corrects `quite many` to `quite a few`, which is the more natural and idiomatic phrase in standard English. `Quite many` is considered nonstandard usage.
+---
+---```lua
+---default = true
+---```
+---@field QuiteMany? boolean
+---Helps distinguish between ‘quiet’ (making ‘little noise’) and ‘quite’ (meaning ‘rather’).
+---
+---```lua
+---default = true
+---```
+---@field QuiteQuiet? boolean
+---Checks that quotation marks are preceded or succeeded by whitespace.
+---
+---```lua
+---default = true
+---```
+---@field QuoteSpacing? boolean
+---When rainbow-colored or cream-colored describe a noun, replace the space between the color words with a hyphen to keep the modifier cohesive.
+---
+---```lua
+---default = true
+---```
+---@field RainbowColoredHyphen? boolean
+---Catches the typo where `rally` sneaks into `be + ...ing` constructions, including common contractions.
+---
+---```lua
+---default = true
+---```
+---@field RallyToReally? boolean
+---Checks to ensure writers hyphenate `rapid-fire`.
+---
+---```lua
+---default = true
+---```
+---@field RapidFire? boolean
+---Ensures the correct use of `real trouper`, distinguishing it from `trooper`, which refers to a soldier or police officer.
+---
+---```lua
+---default = true
+---```
+---@field RealTrouper? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field Really? boolean
+---Identifies redundant acronyms where the last word repeats the last letter's meaning (e.g., `ATM machine` → `ATM` or `automated teller machine`).
+---
+---```lua
+---default = true
+---```
+---@field RedundantAcronyms? boolean
+---Detects redundant additive adverbs.
+---
+---```lua
+---default = true
+---```
+---@field RedundantAdditiveAdverbs? boolean
+---Flags redundant use of 'if' or 'correctly' with `IIRC`, since `IIRC` already stands for 'if I recall correctly'.
+---
+---```lua
+---default = true
+---```
+---@field RedundantIIRC? boolean
+---`Pretty` is redundant when modifying `decent`. Use `decent` alone.
+---
+---```lua
+---default = true
+---```
+---@field RedundantPretty? boolean
+---Simplifies redundant double positives like `most optimal` to the base form.
+---
+---```lua
+---default = true
+---```
+---@field RedundantSuperlatives? boolean
+---There is rarely a situation where `that that` cannot be condensed into a single token.
+---
+---```lua
+---default = true
+---```
+---@field RedundantThat? boolean
+---Looks for incorrect spacing inside the closed compound `regardless`.
+---
+---```lua
+---default = true
+---```
+---@field Regardless? boolean
+---Regionalisms
+---
+---```lua
+---default = true
+---```
+---@field Regionalisms? boolean
+---This rule looks for repetitions of words that are not homographs.
+---
+---```lua
+---default = true
+---```
+---@field RepeatedWords? boolean
+---Flags uses of the noun `response` where the verb `respond` is needed after an auxiliary.
+---
+---```lua
+---default = true
+---```
+---@field Respond? boolean
+---Corrects `take/assume/claim responsibility of` to `take/assume/claim responsibility for`.
+---
+---```lua
+---default = true
+---```
+---@field ResponsibilityFor? boolean
+---Corrects `ripe with` to `rife with`, preserving the phrase’s meaning of being filled with something, often undesirable.
+---
+---```lua
+---default = true
+---```
+---@field RifeWith? boolean
+---Hyphenates right-click style mouse commands.
+---
+---```lua
+---default = true
+---```
+---@field RightClick? boolean
+---Corrects `rise the question` to `raise the question`.
+---
+---```lua
+---default = true
+---```
+---@field RiseTheQuestion? boolean
+---Corrects the nonstandard phrase `rise the ranks` to the standard `rise through the ranks` or `rise from the ranks`
+---
+---```lua
+---default = true
+---```
+---@field RiseTheRanks? boolean
+---Detects when `roadmap` is used instead of `road map`, prompting the correct spacing.
+---
+---```lua
+---default = true
+---```
+---@field RoadMap? boolean
+---Encourages hyphenating the past tense of `roller-skate`.
+---
+---```lua
+---default = true
+---```
+---@field RollerSkated? boolean
+---Corrects pluralizing the wrong noun in `rule of thumb`.
+---
+---```lua
+---default = true
+---```
+---@field RulesOfThumb? boolean
+---Detects `safe` (adjective) when `save` (verb) is intended after modal verbs like `could` or `should`.
+---
+---```lua
+---default = true
+---```
+---@field SafeToSave? boolean
+---Corrects the incorrect phrase `same then` to the standard `same as`.
+---
+---```lua
+---default = true
+---```
+---@field SameAs? boolean
+---Corrects `save to <verb>` to `safe to <verb>` after a form of `be`.
+---
+---```lua
+---default = true
+---```
+---@field SaveToSafe? boolean
+---Fixes `scandally clad` to `scantily clad`, ensuring clarity in describing minimal attire.
+---
+---```lua
+---default = true
+---```
+---@field ScantilyClad? boolean
+---Corrects `scape goat` to `scapegoat`, which is the proper term for a person blamed for others' failures.
+---
+---```lua
+---default = true
+---```
+---@field ScapeGoat? boolean
+---Corrects `seam` to `seem` when used as a verb meaning `to appear` or `to give the impression`.
+---
+---```lua
+---default = true
+---```
+---@field SeamToSeem? boolean
+---Replaces the verbose phrase `send an email to` with the concise verb `email`.
+---
+---```lua
+---default = true
+---```
+---@field SendAnEmailTo? boolean
+---The opening word of a sentence should almost always be capitalized.
+---
+---```lua
+---default = true
+---```
+---@field SentenceCapitalization? boolean
+---Corrects nonstandard variants of 'shoot oneself in the foot'.
+---
+---```lua
+---default = true
+---```
+---@field ShootOneselfInTheFoot? boolean
+---Looks for incorrect spacing inside the closed compound `shortcoming`.
+---
+---```lua
+---default = true
+---```
+---@field Shortcoming? boolean
+---Looks for incorrect spacing inside the closed compound `shortcomings`.
+---
+---```lua
+---default = true
+---```
+---@field Shortcomings? boolean
+---Keeps `shutdown` as a noun when it stands alone but swaps it for the phrasal verb `shut down` whenever an auxiliary precedes it.
+---
+---```lua
+---default = true
+---```
+---@field ShutdownVerb? boolean
+---The adjective 'similar' pairs with the preposition 'to', so never follow it with 'like'.
+---
+---```lua
+---default = true
+---```
+---@field SimilarLike? boolean
+---Corrects `simply grammatical` to `simple grammatical` for proper adjective usage.
+---
+---```lua
+---default = true
+---```
+---@field SimpleGrammatical? boolean
+---Corrects simple past tense verbs to past participle after auxiliary verbs like "have" or "be".
+---
+---```lua
+---default = true
+---```
+---@field SimplePastToPastParticiple? boolean
+---Detects the use of 'since' with a duration instead of a point in time.
+---
+---```lua
+---default = true
+---```
+---@field SinceDuration? boolean
+---Removes adjacent duplicate inflections of `be`, including contracted forms followed by another `be` verb.
+---
+---```lua
+---default = true
+---```
+---@field SingleBe? boolean
+---Changes `sneaky suspicion` to `sneaking suspicion`.
+---
+---```lua
+---default = true
+---```
+---@field SneakingSuspicion? boolean
+---Quantity words such as `some` normally take `of` before a definite article. Including `of` signals that you mean a subset of a larger set, preventing a momentary stumble in comprehension.
+---
+---```lua
+---default = true
+---```
+---@field SomeOfThe? boolean
+---Detects the redundant article in front of `some` and suggests more natural phrasing.
+---
+---```lua
+---default = true
+---```
+---@field SomeWithoutArticle? boolean
+---Looks for incorrect spacing inside the closed compound `somebody`.
+---
+---```lua
+---default = true
+---```
+---@field Somebody? boolean
+---Corrects `somebody else's` when the `'s` is in the wrong place.
+---
+---```lua
+---default = true
+---```
+---@field SomebodyElses? boolean
+---Looks for incorrect spacing inside the closed compound `somehow`.
+---
+---```lua
+---default = true
+---```
+---@field Somehow? boolean
+---Looks for incorrect spacing inside the closed compound `someone`.
+---
+---```lua
+---default = true
+---```
+---@field Someone? boolean
+---Flags forms like `somethings` before progressive verbs and suggests using `something's` or `something is`.
+---
+---```lua
+---default = true
+---```
+---@field SomethingIs? boolean
+---Flags the phrase `somewhat of a` in favor of `something of a`, which can be considered more traditional.
+---
+---```lua
+---default = true
+---```
+---@field SomewhatSomething? boolean
+---Looks for incorrect spacing inside the closed compound `somewhere`.
+---
+---```lua
+---default = true
+---```
+---@field Somewhere? boolean
+---Hyphenates `soon-to-be` when it appears before a noun.
+---
+---```lua
+---default = true
+---```
+---@field SoonToBe? boolean
+---Fixes the improper phrase `sooner than later` by suggesting standard alternatives.
+---
+---```lua
+---default = true
+---```
+---@field SoonerOrLater? boolean
+---Correct `sort after` to `sought after`
+---
+---```lua
+---default = true
+---```
+---@field SoughtAfter? boolean
+---Words should be separated by at most one space.
+---
+---```lua
+---default = true
+---```
+---@field Spaces? boolean
+---Changes `spacial attention` to `special attention`.
+---
+---```lua
+---default = true
+---```
+---@field SpecialAttention? boolean
+---Looks and provides corrections for misspelled words.
+---
+---```lua
+---default = true
+---```
+---@field SpellCheck? boolean
+---Most style guides recommend that you spell out numbers less than ten.
+---@field SpelledNumbers? boolean
+---The words `spinal`, `vocal`, `umbilical`, and `electrical` are followed by `cord`, so replace accidental `chord`/`chords`.
+---
+---```lua
+---default = true
+---```
+---@field SpinalChord? boolean
+---Finds missing spaces in improper compound words.
+---
+---```lua
+---default = true
+---```
+---@field SplitWords? boolean
+---Encourages vivid writing by suggesting `starving` instead of weaker expressions like `very hungry.`
+---
+---```lua
+---default = true
+---```
+---@field Starving? boolean
+---Detects incorrect usage of `state of art` and suggests `state of the art` as the correct phrase.
+---
+---```lua
+---default = true
+---```
+---@field StateOfTheArt? boolean
+---Corrects `statue of limitations` to `statute of limitations`.
+---
+---```lua
+---default = true
+---```
+---@field StatuteOfLimitations? boolean
+---The phrase about resonating with someone is spelled with a chord, not a cord, so fix the typo and keep the idiom intact.
+---
+---```lua
+---default = true
+---```
+---@field StrikeChord? boolean
+---Fixes sentences that start with `me and X` by putting the proper noun first and using `I`.
+---
+---```lua
+---default = true
+---```
+---@field SubjectPronoun? boolean
+---Ensures proper use of the subjunctive mood in counterfactual conditional statements starting with `if only` or `I wish`.
+---
+---```lua
+---default = true
+---```
+---@field SubjunctiveWasToWere? boolean
+---Corrects `suffice to say` to `suffice it to say`.
+---
+---```lua
+---default = true
+---```
+---@field SufficeItToSay? boolean
+---Fixes `suppose to` to the correct `supposed to`.
+---
+---```lua
+---default = true
+---```
+---@field SupposedTo? boolean
+---Corrects `take a look to`/`have a look to` to correctly use `at`.
+---
+---```lua
+---default = true
+---```
+---@field TakeALookTo? boolean
+---Corrects `take it personal` to `take it personally`.
+---
+---```lua
+---default = true
+---```
+---@field TakeItPersonally? boolean
+---Encourages pairing medicine-related nouns with verbs like `take` or `swallow` instead of `eat`.
+---
+---```lua
+---default = true
+---```
+---@field TakeMedicine? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field TalkToYouLater? boolean
+---Corrects the missing article in `thanks lot`, forming `thanks a lot`.
+---
+---```lua
+---default = true
+---```
+---@field ThanksALot? boolean
+---Corrects `the challenged` to `that challenged` for proper relative clause usage.
+---
+---```lua
+---default = true
+---```
+---@field ThatChallenged? boolean
+---Corrects the typo `that` to `than` in comparisons.
+---
+---```lua
+---default = true
+---```
+---@field ThatThan? boolean
+---Fixes `the this` to the correct phrase `that this`.
+---
+---```lua
+---default = true
+---```
+---@field ThatThis? boolean
+---Repeating the word "that" is often redundant. The phrase `that which` is easier to read.
+---
+---```lua
+---default = true
+---```
+---@field ThatWhich? boolean
+---Fixes especially common misspellings of the word `the`
+---
+---```lua
+---default = true
+---```
+---@field The? boolean
+---Corrects `the another`.
+---
+---```lua
+---default = true
+---```
+---@field TheAnother? boolean
+---Removes the extra `the` from expressions like `the how`, skipping `how to` and `who's who`.
+---
+---```lua
+---default = true
+---```
+---@field TheHowWhy? boolean
+---Flags the definite article used together with a possessive.
+---
+---```lua
+---default = true
+---```
+---@field TheMy? boolean
+---Corrects `the point for` to `the point of`
+---
+---```lua
+---default = true
+---```
+---@field ThePointFor? boolean
+---Checks for redundant `the` before possessive proper noun such as `The London's population`.
+---
+---```lua
+---default = true
+---```
+---@field TheProperNounPossessive? boolean
+---Corrects `their` when the intended meaning is `there`.
+---
+---```lua
+---default = true
+---```
+---@field TheirToThere? boolean
+---Corrects `their` when the intended meaning is `they're`.
+---
+---```lua
+---default = true
+---```
+---@field TheirToTheyre? boolean
+---Corrects mixing up `then` and `than`.
+---
+---```lua
+---default = true
+---```
+---@field ThenThan? boolean
+---Looks for incorrect spacing inside the closed compound `there`.
+---
+---```lua
+---default = true
+---```
+---@field There? boolean
+---Corrects `there` when the intended meaning is `their`.
+---
+---```lua
+---default = true
+---```
+---@field ThereToTheir? boolean
+---Looks for incorrect spacing inside the closed compound `therefore`.
+---
+---```lua
+---default = true
+---```
+---@field Therefore? boolean
+---Replaces the mistaken possessive `their's` before a determiner with the contraction `there's`.
+---
+---```lua
+---default = true
+---```
+---@field Theres? boolean
+---Looks for incorrect spacing inside the closed compound `thereupon`.
+---
+---```lua
+---default = true
+---```
+---@field Thereupon? boolean
+---Corrects the common misspelling of `these` as `theses`.
+---
+---```lua
+---default = true
+---```
+---@field ThesesThese? boolean
+---Converts `they` to `them` whenever the pronoun serves as an object after common prepositions or actions that take direct objects.
+---
+---```lua
+---default = true
+---```
+---@field TheyToThem? boolean
+---Detects apostrophe and locative edge cases that are awkward to model with standard contraction checks.
+---
+---```lua
+---default = true
+---```
+---@field TheyreConfusions? boolean
+---Corrects `they're` when the intended meaning is `their`.
+---
+---```lua
+---default = true
+---```
+---@field TheyreToTheir? boolean
+---Corrects the typo `thing` when it should be `think`.
+---
+---```lua
+---default = true
+---```
+---@field ThingThink? boolean
+---Checks that the parts of `this/these type(s) of thing(s)` agree in grammatical number
+---
+---```lua
+---default = true
+---```
+---@field ThisTypeOfThing? boolean
+---Corrects `though` when it's a typo for `thought`.
+---
+---```lua
+---default = true
+---```
+---@field ThoughThought? boolean
+---Changes `though process` to `thought process`.
+---
+---```lua
+---default = true
+---```
+---@field ThoughtProcess? boolean
+---Normalize `threat` to `threaten` when it is used after modals (or their contractions) because the noun form is being mistaken for a verb.
+---
+---```lua
+---default = true
+---```
+---@field ThreatenVerb? boolean
+---Finds the typo `through away` and suggests `throw away` or `threw away` instead.
+---
+---```lua
+---default = true
+---```
+---@field ThrowAway? boolean
+---Checks for throwing rubbish rather than throwing it away.
+---
+---```lua
+---default = true
+---```
+---@field ThrowRubbish? boolean
+---Corrects `ticking time clock` to `ticking time bomb` for idiomatic urgency or `ticking clock` otherwise.
+---
+---```lua
+---default = true
+---```
+---@field TickingTimeClock? boolean
+---Flags duplicated `to` around certain adverbs (e.g. `to never to`) and offers fixes that keep only one `to`.
+---
+---```lua
+---default = true
+---```
+---@field ToAdverb? boolean
+---Treats `to backout` as a mistyped infinitive and prefers the two-word verb.
+---
+---```lua
+---default = true
+---```
+---@field ToBackOut? boolean
+---Expands an initialism.
+---
+---```lua
+---default = true
+---```
+---@field ToBeHonest? boolean
+---Ensures `to-do` is correctly hyphenated.
+---
+---```lua
+---default = true
+---```
+---@field ToDoHyphen? boolean
+---Corrects `through great lengths` to `to great lengths`.
+---
+---```lua
+---default = true
+---```
+---@field ToGreatLengths? boolean
+---Corrects mixing up `to` with `too` and `lose` with `loose`.
+---
+---```lua
+---default = true
+---```
+---@field ToLoseTooLoose? boolean
+---Corrects `in some degree` to `to some degree`, meaning to a certain extent.
+---
+---```lua
+---default = true
+---```
+---@field ToSomeDegree? boolean
+---Corrects `to the manor born` to `to the manner born`, ensuring the intended meaning of being naturally suited to a way of life.
+---
+---```lua
+---default = true
+---```
+---@field ToTheMannerBorn? boolean
+---Corrects `to` used instead of `too`.
+---
+---```lua
+---default = true
+---```
+---@field ToTooIdioms? boolean
+---Corrects homophone confusion between `to` and `too`.
+---
+---```lua
+---default = true
+---```
+---@field ToTwoToo? boolean
+---Fixes incorrect use of `to worried about`.
+---
+---```lua
+---default = true
+---```
+---@field ToWorryAbout? boolean
+---Corrects the idiom when `and` replaces the needed preposition.
+---
+---```lua
+---default = true
+---```
+---@field TongueInCheek? boolean
+---Corrects `too` used instead of `to`.
+---
+---```lua
+---default = true
+---```
+---@field TooTo? boolean
+---Suggests replacing the uncommon word `touristic` with `tourist`, `tourism`, and/or `touristy`.
+---
+---```lua
+---default = true
+---```
+---@field Touristic? boolean
+---Removes redundant `to` before `towards`.
+---
+---```lua
+---default = true
+---```
+---@field Towards? boolean
+---Looks for a space one character too early or too late between words.
+---
+---```lua
+---default = true
+---```
+---@field TransposedSpace? boolean
+---Corrects `trail` to `trial` in `trial and error`.
+---
+---```lua
+---default = true
+---```
+---@field TrialAndError? boolean
+---Normalizes phrasing around `true to <possessive>` so it follows the conventional `true to one's word`.
+---
+---```lua
+---default = true
+---```
+---@field TrueToWord? boolean
+---Corrects `try one's hands at` to `try one's hand at`.
+---
+---```lua
+---default = true
+---```
+---@field TryOnesHandAt? boolean
+---The adjective `tough` pairs with words like `enough` or `like`, so correct the common typo `tuff` in those constructions.
+---
+---```lua
+---default = true
+---```
+---@field TuffEnough? boolean
+---Ensure proper capitalization of Tumblr-related terms.
+---
+---```lua
+---default = true
+---```
+---@field TumblrNames? boolean
+---Fixes the mistake in the phrase `turn it off`.
+---
+---```lua
+---default = true
+---```
+---@field TurnItOff? boolean
+---Ensure proper capitalization of major universities in the United States.
+---
+---```lua
+---default = true
+---```
+---@field USUniversities? boolean
+---Quotation marks should always be closed. Unpaired quotation marks are a hallmark of sloppy work.
+---
+---```lua
+---default = true
+---```
+---@field UnclosedQuotes? boolean
+---Looks for incorrect spacing inside the closed compound `underclock`.
+---
+---```lua
+---default = true
+---```
+---@field Underclock? boolean
+---When referring to national or international organizations, make sure to treat them as a proper noun.
+---
+---```lua
+---default = true
+---```
+---@field UnitedOrganizations? boolean
+---Corrects `unless if`.
+---
+---```lua
+---default = true
+---```
+---@field Unless? boolean
+---This rule looks for deprecated place names and offers to update them.
+---
+---```lua
+---default = true
+---```
+---@field UpdatePlaceNames? boolean
+---Looks for incorrect spacing inside the closed compound `upset`.
+---
+---```lua
+---default = true
+---```
+---@field Upset? boolean
+---Looks for incorrect spacing inside the closed compound `upward`.
+---
+---```lua
+---default = true
+---```
+---@field Upward? boolean
+---Prompts you to use title case in relevant headings.
+---
+---```lua
+---default = true
+---```
+---@field UseTitleCase? boolean
+---Looks for article-led gerund noun phrases like `a fully accounting of`, where an adjective is more likely than an adverb.
+---
+---```lua
+---default = true
+---```
+---@field VerbToAdjective? boolean
+---`very well-known` (or `well-known`) is the standard way to describe something widely recognized, so we flag the uncommon `very known` word pair.
+---
+---```lua
+---default = true
+---```
+---@field VeryKnown? boolean
+---Corrects `very less`.
+---
+---```lua
+---default = true
+---```
+---@field VeryLess? boolean
+---Flags phrases like `very unique`, `pretty unique`, etc., and suggests using `unique` alone or a more precise adjective such as `special`, `rare`, or `unusual`.
+---
+---```lua
+---default = true
+---```
+---@field VeryUnique? boolean
+---Recommends writing ‘vice versa’ without hyphens.
+---
+---```lua
+---default = true
+---```
+---@field ViceVersa? boolean
+---Corrects and standardizes common errors and variants of `vicious/virtuous circle`.
+---
+---```lua
+---default = true
+---```
+---@field ViciousCircle? boolean
+---Corrects common errors in `vicious/virtuous circle/cycle`.
+---@field ViciousCircleOrCycle? boolean
+---Corrects and standardizes common errors and variants of `vicious/virtuous cycle`.
+---@field ViciousCycle? boolean
+---Detects incorrect usage of `want be` and suggests `won't be` or `want to be` based on context.
+---
+---```lua
+---default = true
+---```
+---@field WantBe? boolean
+---Ensures `was aloud` and `were aloud` are corrected to `was allowed` or `were allowed` when referring to permission.
+---
+---```lua
+---default = true
+---```
+---@field WasAloud? boolean
+---Identifies the mistake of merging `wave` and `function` into one word. In quantum mechanics, a `wave function` (written as two words) describes the mathematical function that represents the quantum state of a particle or system. Correct usage is crucial for clear and accurate scientific communication.
+---
+---```lua
+---default = true
+---```
+---@field WaveFunction? boolean
+---Replaces the preposition `to` with the adverb `too` after `way` when followed by an adjective (e.g. `way too fast`)
+---
+---```lua
+---default = true
+---```
+---@field WayTooAdjective? boolean
+---Ensures `well-being` is correctly hyphenated.
+---
+---```lua
+---default = true
+---```
+---@field WellBeing? boolean
+---Replaces `good-educated` with the accepted compound `well-educated`.
+---
+---```lua
+---default = true
+---```
+---@field WellEducated? boolean
+---Flags `highly-kept` and recommends `well-kept` as an alternative.
+---
+---```lua
+---default = true
+---```
+---@field WellKept? boolean
+---The Whereas rule is designed to identify instances where the phrase `where as` is used in text and suggests replacing it with the single word `whereas`.
+---
+---```lua
+---default = true
+---```
+---@field Whereas? boolean
+---Looks for incorrect spacing inside the closed compound `whereupon`.
+---
+---```lua
+---default = true
+---```
+---@field Whereupon? boolean
+---Ensures `whet your appetite` is used correctly, distinguishing it from the incorrect `wet` variation.
+---
+---```lua
+---default = true
+---```
+---@field WhetYourAppetite? boolean
+---Corrects the redundancy in `whole entire` to `whole` or `entire`.
+---
+---```lua
+---default = true
+---```
+---@field WholeEntire? boolean
+---Detects whom and its variants used as the subject of a verb instead of who.
+---
+---```lua
+---default = true
+---```
+---@field WhomSubjectOfVerb? boolean
+---Flags `wide accepted`, `wide acceptable`, or `wide used` and recommends switching `wide` to the adverb `widely`.
+---
+---```lua
+---default = true
+---```
+---@field WidelyAccepted? boolean
+---Looks for incorrect spacing inside the closed compound `widespread`.
+---
+---```lua
+---default = true
+---```
+---@field Widespread? boolean
+---Incorrect verb form: `will` should be followed by the base form `contain`.
+---
+---```lua
+---default = true
+---```
+---@field WillContain? boolean
+---Catches the mix-up between `price`/`prise` and `prize` after the verb `win`.
+---
+---```lua
+---default = true
+---```
+---@field WinPrize? boolean
+---Checks for `can` being used after `wish` when it should be `could`.
+---
+---```lua
+---default = true
+---```
+---@field WishCould? boolean
+---Looks for incorrect spacing inside the closed compound `without`.
+---
+---```lua
+---default = true
+---```
+---@field Without? boolean
+---When writers accidentally type `without out`, Harper can collapse the two words back into the single preposition.
+---
+---```lua
+---default = true
+---```
+---@field WithoutOut? boolean
+---Ensures correct capitalization of WordPress.com. This rule verifies that the official stylization of WordPress.com is used when referring to the hosting provider.
+---
+---```lua
+---default = true
+---```
+---@field WordPressDotcom? boolean
+---Looks for incorrect spacing inside the closed compound `worldwide`.
+---
+---```lua
+---default = true
+---```
+---@field Worldwide? boolean
+---Corrects `worse` and `worst` used in contexts where the other belongs.
+---
+---```lua
+---default = true
+---```
+---@field WorseOrWorst? boolean
+---Corrects `worst-case scenario` when the hyphen is missing or `worse` is used instead of `worst`.
+---
+---```lua
+---default = true
+---```
+---@field WorstCaseScenario? boolean
+---Corrects `worth to` + a verb to `worth` + the gerund of the verb.
+---
+---```lua
+---default = true
+---```
+---@field WorthToDo? boolean
+---Corrects `would/could have never` to `never would/could have`.
+---
+---```lua
+---default = true
+---```
+---@field WouldNeverHave? boolean
+---Corrects the eggcorn `wreck havoc` to `wreak havoc`, which is the proper term for causing chaos or destruction.
+---
+---```lua
+---default = true
+---```
+---@field WreakHavoc? boolean
+---Corrects semicolons or acute accents typed instead of apostrophes.
+---
+---```lua
+---default = true
+---```
+---@field WrongApostrophe? boolean
+---Corrects `by wrote` to `by rote`.
+---
+---```lua
+---default = true
+---```
+---@field WroteToRote? boolean
+---`Wrought iron` is low-carbon, malleable iron used for decorative work; variants like `rod iron` or `rot iron` are phonetic misspellings that may confuse readers.
+---
+---```lua
+---default = true
+---```
+---@field WroughtIron? boolean
+---Corrects `yea` to `yeah`.
+---
+---```lua
+---default = true
+---```
+---@field YeaToYeah? boolean
+---Corrects `yeh` to `yeah`.
+---
+---```lua
+---default = true
+---```
+---@field YehToYeah? boolean
+---Catches cases where a predicate adjective follows `your`, `yr`, `ur`, or `ya` and suggests the proper contraction so the sentence states how someone is feeling or behaving.
+---
+---```lua
+---default = true
+---```
+---@field YourPredicateAdjective? boolean
+
+---@class _.lspconfig.settings.harper_ls.Harper.Markdown
+---Skip linting link titles.
+---@field IgnoreLinkTitle? boolean
+
+---@class _.lspconfig.settings.harper_ls.Harper
+---@field codeActions? _.lspconfig.settings.harper_ls.Harper.CodeActions
+---How severe do you want diagnostics to appear in the editor?
+---
+---```lua
+---default = "information"
+---```
+---@field diagnosticSeverity? "error" | "hint" | "information" | "warning"
+---Set which dialect of English Harper should expect.
+---
+---```lua
+---default = "American"
+---```
+---@field dialect? "British" | "American" | "Canadian" | "Australian"
+---A set of globs to ignore. If a file matches any of the globs, it will not be linted.
+---@field excludePatterns? any[]
+---Optional path to a file dictionary directory to use.
+---@field fileDictPath? string
+---Only lint English text in documents that are a mixture of English and another language.
+---@field isolateEnglish? boolean
+---@field linters? _.lspconfig.settings.harper_ls.Harper.Linters
+---@field markdown? _.lspconfig.settings.harper_ls.Harper.Markdown
+---Maximum length of file to be linted (in bytes). If a file is larger than this, it will not be linted.
+---
+---```lua
+---default = 120000
+---```
+---@field maxFileLength? number
+---Optional path to a harper-ls executable to use.
+---@field path? string
+---Optional path to a user dictionary file to use.
+---@field userDictPath? string
+---Optional path to a workspace-local dictionary file to use.
+---@field workspaceDictPath? string
+
+---@class lspconfig.settings.harper_ls
+---@field harper? _.lspconfig.settings.harper_ls.Harper

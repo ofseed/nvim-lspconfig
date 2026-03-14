@@ -1,0 +1,95 @@
+---@meta
+
+---@class _.lspconfig.settings.jsonnet_ls.Jsonnet.Debugger
+---```lua
+---default = true
+---```
+---@field enableAutoUpdate? boolean
+---Path to debugger
+---@field pathToBinary? string
+---Github repository to download the debugger server from
+---
+---```lua
+---default = "grafana/jsonnet-debugger"
+---```
+---@field releaseRepository? string
+
+---Configure the formatting options for the language server. See https://github.com/google/go-jsonnet/blob/master/internal/formatter/jsonnetfmt.go#L55 for field descriptions.
+---@class _.lspconfig.settings.jsonnet_ls.Jsonnet.LanguageServer.Formatting
+---@field CommentStyle? "hash" | "slash" | "leave"
+---@field Indent? number
+---@field MaxBlankLines? number
+---@field PadArrays? boolean
+---@field PadObjects? boolean
+---@field PrettyFieldNames? boolean
+---@field SortImports? boolean
+---@field StringStyle? "double" | "single" | "leave"
+---@field StripAllButComments? boolean
+---@field StripComments? boolean
+---@field StripEverything? boolean
+---@field UseImplicitPlus? boolean
+
+---@class _.lspconfig.settings.jsonnet_ls.Jsonnet.LanguageServer
+---Whether to continuously evaluate the selected file
+---
+---```lua
+---default = true
+---```
+---@field continuousEval? boolean
+---```lua
+---default = true
+---```
+---@field enableAutoUpdate? boolean
+---If enabled, the LSP will publish eval diagnostics. May produce false positives as the evaluator may not have the full evaluation context. Also, if you work with very large jsonnet projects, you may want to disable this for performance reasons
+---@field eval? boolean
+---External command for evaluation (e.g. "jsonnet" or "tk"). When set, jsonnet.evalFile and jsonnet.evalExpression use it instead of the in-process VM. With Tanka mode (resolve_paths_with_tanka), the command is invoked as a Tanka binary (e.g. "tk eval <envDir>"). Otherwise it is invoked as a jsonnet binary (temp script with -J, -V, --ext-code).
+---
+---```lua
+---default = ""
+---```
+---@field evalBinary? string
+---External Jsonnet Code to pass to the language server
+---@field extCode? table
+---External variables to pass to the language server
+---
+---```lua
+---default = {}
+---```
+---@field extVars? table
+---Configure the formatting options for the language server. See https://github.com/google/go-jsonnet/blob/master/internal/formatter/jsonnetfmt.go#L55 for field descriptions.
+---@field formatting? _.lspconfig.settings.jsonnet_ls.Jsonnet.LanguageServer.Formatting
+---List of Jpaths to configure into the lsp
+---
+---```lua
+---default = {}
+---```
+---@field jpath? string[]
+---If enabled, the LSP will publish linting diagnostics. This may slow down processing of jsonnet evaluation errors (also published as diagnostics)
+---@field lint? boolean
+---Log level for the language server
+---
+---```lua
+---default = "info"
+---```
+---@field logLevel? "error" | "warn" | "info" | "debug"
+---Path to language server binary
+---@field pathToBinary? string
+---Github repository to download the language server from
+---
+---```lua
+---default = "grafana/jsonnet-language-server"
+---```
+---@field releaseRepository? string
+---Enable tanka mode. This will use Tanka's code to create a Jsonnet VM. This sets the jpath automatically and allows the resolution of tanka native functions
+---
+---```lua
+---default = true
+---```
+---@field tankaMode? boolean
+
+---@class _.lspconfig.settings.jsonnet_ls.Jsonnet
+---@field debugger? _.lspconfig.settings.jsonnet_ls.Jsonnet.Debugger
+---@field languageServer? _.lspconfig.settings.jsonnet_ls.Jsonnet.LanguageServer
+
+---@class lspconfig.settings.jsonnet_ls
+---@field jsonnet? _.lspconfig.settings.jsonnet_ls.Jsonnet

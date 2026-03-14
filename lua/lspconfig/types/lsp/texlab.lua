@@ -1,0 +1,251 @@
+---@meta
+
+---@class _.lspconfig.settings.texlab.Texlab.Build
+---Additional arguments that are passed to the build tool.
+---
+---```lua
+---default = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" }
+---```
+---@field args? any[]
+---Directory containing the aux files.
+---
+---```lua
+---default = "."
+---```
+---@field auxDirectory? string
+---Path to a LaTeX build tool.
+---
+---```lua
+---default = "latexmk"
+---```
+---@field executable? string
+---The base name of the output file.
+---@field filename? string
+---Execute forward search after building
+---@field forwardSearchAfter? boolean
+---Directory containing the build log files.
+---
+---```lua
+---default = "."
+---```
+---@field logDirectory? string
+---Build after saving a file
+---@field onSave? boolean
+---Directory containing the output file.
+---
+---```lua
+---default = "."
+---```
+---@field pdfDirectory? string
+---Use the .fls files as an additional input for project detection
+---@field useFileList? boolean
+
+---@class _.lspconfig.settings.texlab.Texlab.Chktex
+---Additional arguments that are passed to ChkTeX
+---
+---```lua
+---default = {}
+---```
+---@field additionalArgs? any[]
+---Lint using chktex after changing a file
+---@field onEdit? boolean
+---Lint using chktex after opening and saving a file.
+---
+---```lua
+---default = true
+---```
+---@field onOpenAndSave? boolean
+
+---@class _.lspconfig.settings.texlab.Texlab.Completion
+---Matching algorithm used to filter the completion items.
+---
+---```lua
+---default = "fuzzy-ignore-case"
+---```
+---@field matcher? "fuzzy" | "fuzzy-ignore-case" | "prefix" | "prefix-ignore-case"
+
+---@class _.lspconfig.settings.texlab.Texlab.Diagnostics
+---If specified, only diagnostics that match at least one of the specified patterns are displayed.
+---
+---```lua
+---default = {}
+---```
+---@field allowedPatterns? any[]
+---If specified, only diagnostics that match none of the specified patterns are displayed.
+---
+---```lua
+---default = {}
+---```
+---@field ignoredPatterns? any[]
+
+---@class _.lspconfig.settings.texlab.Texlab.Experimental
+---Customize the list of commands that reference BibTeX entries.
+---
+---```lua
+---default = {}
+---```
+---@field citationCommands? any[]
+---Extends the list of environments considered as enumeration environments.
+---
+---```lua
+---default = {}
+---```
+---@field enumEnvironments? any[]
+---If specified, dependencies of packages are resolved and included in the dependency graph.
+---
+---```lua
+---default = true
+---```
+---@field followPackageLinks? boolean
+---Customize the list of commands that reference glossary entries.
+---
+---```lua
+---default = {}
+---```
+---@field glossaryReferenceCommands? any[]
+---Customize the list of commands that define LaTeX labels.
+---
+---```lua
+---default = {}
+---```
+---@field labelDefinitionCommands? any[]
+---Customize the list of commands that define LaTeX labels with a prefix.
+---
+---```lua
+---default = {}
+---```
+---@field labelDefinitionPrefixes? any[]
+---Customize the list of commands that reference LaTeX labels.
+---
+---```lua
+---default = {}
+---```
+---@field labelReferenceCommands? any[]
+---Customize the list of commands that reference LaTeX labels with a prefix.
+---
+---```lua
+---default = {}
+---```
+---@field labelReferencePrefixes? any[]
+---Customize the list of \crefrange-like commands.
+---
+---```lua
+---default = {}
+---```
+---@field labelReferenceRangeCommands? any[]
+---Extends the list of environments considered as math environments.
+---
+---```lua
+---default = {}
+---```
+---@field mathEnvironments? any[]
+---Do not report diagnostics from these environments.
+---
+---```lua
+---default = {}
+---```
+---@field verbatimEnvironments? any[]
+
+---@class _.lspconfig.settings.texlab.Texlab.ForwardSearch
+---Additional arguments that are passed to the previewer.
+---
+---```lua
+---default = {}
+---```
+---@field args? any[]
+---Path to a PDF previewer that supports SyncTeX.
+---@field executable? string
+
+---@class _.lspconfig.settings.texlab.Texlab.Hover
+---Describe how to render symbol-like commands when hovering.
+---
+---```lua
+---default = "image"
+---```
+---@field symbols? "none" | "glyph" | "image"
+
+---@class _.lspconfig.settings.texlab.Texlab.InlayHints
+---If specified, inlay hints are shown for \label commands.
+---
+---```lua
+---default = true
+---```
+---@field labelDefinitions? boolean
+---If specified, inlay hints are shown for label references (e. g. \ref).
+---
+---```lua
+---default = true
+---```
+---@field labelReferences? boolean
+---If specified, inlay hints are truncated to the specified length.
+---@field maxLength? number
+
+---@class _.lspconfig.settings.texlab.Texlab.Latexindent
+---Configures the --local flag of latexindent.
+---@field ["local"]? string
+---Configures the --modifylinebreaks flag of latexindent.
+---@field modifyLineBreaks? boolean
+---Adds the specified replacement flag to latexindent.
+---@field replacement? string
+
+---@class _.lspconfig.settings.texlab.Texlab.Server
+---Path to the server log file.
+---@field logFile? string
+---Full path to the server executable.
+---@field path? string
+---Enable the trace verbosity of the server.
+---@field trace? boolean
+
+---@class _.lspconfig.settings.texlab.Texlab.Symbols
+---If specified, only symbols that match at least one of the specified patterns are displayed.
+---
+---```lua
+---default = {}
+---```
+---@field allowedPatterns? any[]
+---Customize the list of environments that are considered as symbols.
+---
+---```lua
+---default = {}
+---```
+---@field customEnvironments? any[]
+---If specified, only symbols that match none of the specified patterns are displayed.
+---
+---```lua
+---default = {}
+---```
+---@field ignoredPatterns? any[]
+
+---@class _.lspconfig.settings.texlab.Texlab
+---BibTeX formatter to use.
+---
+---```lua
+---default = "texlab"
+---```
+---@field bibtexFormatter? "none" | "texlab" | "latexindent" | "tex-fmt"
+---@field build? _.lspconfig.settings.texlab.Texlab.Build
+---@field chktex? _.lspconfig.settings.texlab.Texlab.Chktex
+---@field completion? _.lspconfig.settings.texlab.Texlab.Completion
+---@field diagnostics? _.lspconfig.settings.texlab.Texlab.Diagnostics
+---@field experimental? _.lspconfig.settings.texlab.Texlab.Experimental
+---Maximum amount of characters per line (0 = disable).
+---
+---```lua
+---default = 80
+---```
+---@field formatterLineLength? integer
+---@field forwardSearch? _.lspconfig.settings.texlab.Texlab.ForwardSearch
+---@field hover? _.lspconfig.settings.texlab.Texlab.Hover
+---@field inlayHints? _.lspconfig.settings.texlab.Texlab.InlayHints
+---LaTeX formatter to use.
+---
+---```lua
+---default = "latexindent"
+---```
+---@field latexFormatter? "none" | "texlab" | "latexindent" | "tex-fmt"
+---@field latexindent? _.lspconfig.settings.texlab.Texlab.Latexindent
+---@field server? _.lspconfig.settings.texlab.Texlab.Server
+---@field symbols? _.lspconfig.settings.texlab.Texlab.Symbols
+
+---@class lspconfig.settings.texlab
+---@field texlab? _.lspconfig.settings.texlab.Texlab

@@ -1,0 +1,73 @@
+---@meta
+
+---@class _.lspconfig.settings.docker_compose_language_service.Docker.Extension.Editor
+---Render a divider line between each build stage of a Dockerfile.
+---
+---```lua
+---default = true
+---```
+---@field dockerfileBuildStageDecorationLines? boolean
+
+---@class _.lspconfig.settings.docker_compose_language_service.Docker.Extension
+---Be notified when Docker Engine is not available.
+---
+---```lua
+---default = true
+---```
+---@field dockerEngineAvailabilityPrompt? boolean
+---@field editor? _.lspconfig.settings.docker_compose_language_service.Docker.Extension.Editor
+---Enable Compose editing features from the Docker DX extension. Note that changing this value requires a **restart** of Visual Studio Code to take effect.
+---
+---If you have [Red Hat's YAML extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml), note that both Docker DX and Red Hat's YAML extension are handling Compose files. This creates duplicate completions, hovers, and syntax errors.
+---
+---You can follow the steps [here](https://github.com/docker/vscode-extension/blob/main/FAQ.md) to update your `settings.json` to turn off Compose support in the YAML extension and streamline your experience.
+---
+---```lua
+---default = true
+---```
+---@field enableComposeLanguageServer? boolean
+
+---@class _.lspconfig.settings.docker_compose_language_service.Docker.Lsp.Experimental.Scout
+---Determines if `critical_high_vulnerabilities` diagnostics should be shown. If `docker.lsp.experimental.vulnerabilityScanning` is false then this setting will be ignored.
+---
+---```lua
+---default = true
+---```
+---@field criticalHighVulnerabilities? boolean
+---Determines if `not_pinned_digest` diagnostics should be shown. If `docker.lsp.experimental.vulnerabilityScanning` is false then this setting will be ignored.
+---@field notPinnedDigest? boolean
+---Determines if `recommended_tag` diagnostics should be shown. If `docker.lsp.experimental.vulnerabilityScanning` is false then this setting will be ignored.
+---@field recommendedTag? boolean
+---Determines if `vulnerabilities` diagnostics should be shown. If `docker.lsp.experimental.vulnerabilityScanning` is false then this setting will be ignored.
+---
+---```lua
+---default = true
+---```
+---@field vulnerabilities? boolean
+
+---@class _.lspconfig.settings.docker_compose_language_service.Docker.Lsp.Experimental
+---@field scout? _.lspconfig.settings.docker_compose_language_service.Docker.Lsp.Experimental.Scout
+---Enable image analysis of Dockerfiles (Experimental)
+---
+---```lua
+---default = true
+---```
+---@field vulnerabilityScanning? boolean
+
+---@class _.lspconfig.settings.docker_compose_language_service.Docker.Lsp
+---Enter the port on localhost where the language server is running, used for debugging.
+---@field debugServerPort? number
+---@field experimental? _.lspconfig.settings.docker_compose_language_service.Docker.Lsp.Experimental
+---Determines what telemetry is collected by Docker. If vscode.env.isTelemetryEnabled is false, then telemetry collection is disabled regardless of what has been set for this configuration value.
+---
+---```lua
+---default = "all"
+---```
+---@field telemetry? "all" | "error" | "off"
+
+---@class _.lspconfig.settings.docker_compose_language_service.Docker
+---@field extension? _.lspconfig.settings.docker_compose_language_service.Docker.Extension
+---@field lsp? _.lspconfig.settings.docker_compose_language_service.Docker.Lsp
+
+---@class lspconfig.settings.docker_compose_language_service
+---@field docker? _.lspconfig.settings.docker_compose_language_service.Docker
