@@ -13,6 +13,7 @@
 ---@type vim.lsp.Config
 return {
   cmd = { 'ansible-language-server', '--stdio' },
+  ---@type lspconfig.settings.ansiblels
   settings = {
     ansible = {
       python = {

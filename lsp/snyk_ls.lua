@@ -86,6 +86,7 @@ return {
     'typescript',
     'yaml',
   },
+  ---@type lspconfig.settings.snyk_ls
   settings = {},
   init_options = {
     activateSnykOpenSource = 'true', -- Scan open source dependencies

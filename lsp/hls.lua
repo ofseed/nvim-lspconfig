@@ -22,6 +22,7 @@ return {
     local fname = vim.api.nvim_buf_get_name(bufnr)
     on_dir(util.root_pattern('hie.yaml', 'stack.yaml', 'cabal.project', '*.cabal', 'package.yaml')(fname))
   end,
+  ---@type lspconfig.settings.hls
   settings = {
     haskell = {
       formattingProvider = 'ormolu',

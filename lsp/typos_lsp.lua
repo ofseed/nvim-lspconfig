@@ -11,5 +11,6 @@
 return {
   cmd = { 'typos-lsp' },
   root_markers = { 'typos.toml', '_typos.toml', '.typos.toml', 'pyproject.toml', 'Cargo.toml' },
+  ---@type lspconfig.settings.typos_lsp
   settings = {},
 }

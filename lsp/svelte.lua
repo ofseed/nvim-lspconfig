@@ -13,6 +13,7 @@
 return {
   cmd = { 'svelteserver', '--stdio' },
   filetypes = { 'svelte' },
+  ---@type lspconfig.settings.svelte
   settings = {
     typescript = {
       inlayHints = {

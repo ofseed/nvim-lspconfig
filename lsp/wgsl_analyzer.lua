@@ -12,5 +12,6 @@ return {
   cmd = { 'wgsl-analyzer' },
   filetypes = { 'wgsl' },
   root_markers = { '.git' },
+  ---@type lspconfig.settings.wgsl_analyzer
   settings = {},
 }
